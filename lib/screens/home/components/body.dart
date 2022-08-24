@@ -9,15 +9,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body:CustomScrollView(
-       slivers: <Widget>[
-         SliverAppBar(
-          snap: true,
-          pinned: false,
-          floating: true,
-          
-         )
-       ],
+     appBar: AppBar(
+      
      ),
     );
   }
