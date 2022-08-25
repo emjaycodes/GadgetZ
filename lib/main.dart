@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/forgot_password/components/body.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/login/login.dart';
@@ -8,6 +7,7 @@ import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/sign_up/signup.dart';
 import 'package:oga_bassey/screens/splash/splash.dart';
 import 'package:oga_bassey/screens/welcome.dart';
+import 'package:oga_bassey/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Oga Bassey',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         //inputTextField Style
          inputDecorationTheme:  const InputDecorationTheme(
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         ForgotPasswordScreen.id:(context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id:(context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
+        HomeScreen.id: (context) => const HomeScreen()
         // SplashScreen.id:(context) => const SplashScreen(),
       },
       
