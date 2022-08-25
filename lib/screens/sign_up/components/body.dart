@@ -2,11 +2,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/components/custom_text_input_field.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/components/social_media_card.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
+import 'package:oga_bassey/screens/home/home_screen.dart';
 
 
 
@@ -51,39 +53,17 @@ class Body  extends StatelessWidget {
                  ksmallSizedbox,
                  // textfield with icon
                  PasswordTextfield(),
-                 
-                 // text that says forgot password
-                //  Padding(
-                //    padding: const EdgeInsets.symmetric(horizontal:35.0),
-                //    child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //      children: [
-                //        GestureDetector(
-                //         onTap: (){
-                //           Navigator.pushNamed(context, ForgotPasswordScreen.id);
-                //         },
-                //          child: Text('forgot password?',
-                //          ),
-                //        ),
-                //      ],
-                //    ),
-                //  ),
+
                  kbigSizedbox,
                  
                 // sign up buttun
-                Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 150),
-                decoration: BoxDecoration(color: Color(0xFF959FD0),
-                borderRadius: BorderRadius.circular(20)
-                ),
-                child: Text('Sign up',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xFF081658),
-                  fontWeight: FontWeight.w500,
-                ),
-                ),
-              ),
+                CustomButtom(
+                 buttonName: 'Signup',
+                 buttonColor: kdisabledButtonColor, 
+                 textStyle: ksignupbuttonTextStyle(),
+                 onPressed: (){
+                  Navigator.pushNamed(context, HomeScreen.id);
+                 }),
       
               kbigSizedbox,
       
