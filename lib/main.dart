@@ -5,7 +5,7 @@ import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/login/login.dart';
 import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/sign_up/signup.dart';
-import 'package:oga_bassey/screens/splash/splash.dart';
+
 import 'package:oga_bassey/screens/welcome.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
 
