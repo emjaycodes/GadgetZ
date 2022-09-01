@@ -6,7 +6,7 @@ import 'components/body.dart';
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
-    static String id = 'forgot_password_screen';
+  static String id = 'forgot_password_screen';
 
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
@@ -32,7 +32,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               size: 40,
             )),
       ),
-
       body: const Body(),
     );
   }
