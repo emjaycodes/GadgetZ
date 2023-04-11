@@ -11,16 +11,42 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Column(
-      children: [
-        ksmallSizedbox,
-       Center(
-         child: CustomStackWidget(),
-       ),
-       
-       
-      ],
+    return SingleChildScrollView(
+      child: Expanded(
+        child: Column(
+          children: [
+            ksmallSizedbox,
+            Center(
+              child: CustomStackWidget(),
+            ),
+            kbigSizedbox,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 70,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Stack(
+                      children :[
+                        Container(
+                        height: 60,
+                        width: 130,
+                        decoration: BoxDecoration(
+                            color: kprimaryColor,
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      Text('Laptop'),
+                      Text('40 Products')
+                      ]
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
-
