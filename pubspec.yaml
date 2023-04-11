@@ -76,6 +76,7 @@ flutter:
     - images/email.png
     - images/vector.png
     - images/caro.png
+    - images/zen.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
