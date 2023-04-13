@@ -4,6 +4,7 @@ import 'package:oga_bassey/screens/forgot_password/components/email_notication.d
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/login/login.dart';
 import 'package:oga_bassey/screens/new_password/new_password.dart';
+import 'package:oga_bassey/screens/product_screen/product_screen.dart';
 import 'package:oga_bassey/screens/sign_up/signup.dart';
 
 import 'package:oga_bassey/screens/welcome.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
          ),
       ),
       ),
-      initialRoute: HomeScreen.id,
+      initialRoute: ProductScreen.id,
       routes: {
         WelcomeScreen.id:(context) => const WelcomeScreen(),
         SignupScreen.id:(context) => const SignupScreen(),
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         ForgotPasswordScreen.id:(context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id:(context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
-        HomeScreen.id: (context) => const HomeScreen()
+        HomeScreen.id: (context) => const HomeScreen(),
+        ProductScreen.id:(context) => const ProductScreen()
         // SplashScreen.id:(context) => const SplashScreen(),
       },
       
