@@ -6,7 +6,7 @@ import 'package:oga_bassey/screens/login/login.dart';
 import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/product_screen/product_screen.dart';
 import 'package:oga_bassey/screens/sign_up/signup.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:oga_bassey/screens/welcome.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
 
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Oga Bassey',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
         //inputTextField Style
          inputDecorationTheme:  const InputDecorationTheme(
       enabledBorder: OutlineInputBorder(

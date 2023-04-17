@@ -21,15 +21,15 @@ class ProductContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 270,
-      width: 170,
+      width: 150,
       decoration: BoxDecoration(
           color: ktertiaryColor, borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: [
           Image.asset(productImage),
           Container(
-            height: 90,
-            width: 150,
+            height: 120,
+            width: 135,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Padding(
@@ -39,7 +39,7 @@ class ProductContainer extends StatelessWidget {
                 children: [
                   ksmallSizedbox,
                   Text(productName),
-                  ksmallSizedbox,
+                  // ksmallSizedbox,
                   Text(productbrand),
                   SizedBox(
                     height: 2,
