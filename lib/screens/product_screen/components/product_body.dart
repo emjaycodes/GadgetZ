@@ -72,7 +72,7 @@ class _ProductBodyState extends State<ProductBody> {
           ),
           kbigSizedbox,
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -87,7 +87,7 @@ class _ProductBodyState extends State<ProductBody> {
           ),
           kbigSizedbox,
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -102,7 +102,7 @@ class _ProductBodyState extends State<ProductBody> {
           ),
           kbigSizedbox,
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
