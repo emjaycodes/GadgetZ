@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:oga_bassey/components/email_textfield.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/components/custom_text_input_field.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/login/login.dart';
