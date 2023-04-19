@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/screens/auth/auth_body.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/login/login.dart';
@@ -11,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:oga_bassey/screens/welcome.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
 
+import 'components/utils.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ScaffoldMessengerkey:
+    Utils.messengerKey;
     return MaterialApp(
       title: 'Oga Bassey',
       debugShowCheckedModeBanner: false,
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: ProductScreen.id,
+      initialRoute: AuthScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         SignupScreen.id: (context) => const SignupScreen(),
@@ -49,8 +53,9 @@ class MyApp extends StatelessWidget {
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id: (context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
-        HomeScreen.id: (context) => const HomeScreen(),
-        ProductScreen.id: (context) => const ProductScreen()
+        HomeScreen.id: (context) => HomeScreen(),
+        ProductScreen.id: (context) => const ProductScreen(),
+        AuthScreen.id: (context) => const AuthScreen(),
         // SplashScreen.id:(context) => const SplashScreen(),
       },
     );
