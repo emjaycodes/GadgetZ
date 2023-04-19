@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638349590608",
+    "project_id": "gadgetz-eab3b",
+    "storage_bucket": "gadgetz-eab3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638349590608:android:eb5193b4555d4e3a8ed155",
+        "android_client_info": {
+          "package_name": "com.example.oga_bassey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638349590608-590rtmvunj68lgurn1ar1ki1j63bgilp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9Eq4CYO5bF9edJUdodesC-FtnQmbJtVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638349590608-590rtmvunj68lgurn1ar1ki1j63bgilp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

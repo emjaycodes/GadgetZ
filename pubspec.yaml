@@ -38,6 +38,9 @@ dependencies:
   flutter_native_splash: ^2.2.8
   font_awesome_flutter: ^10.1.0
   google_fonts: ^4.0.3
+  firebase_core: ^2.9.0
+  firebase_auth: ^4.4.1
+
 
 flutter_native_splash:
   background_image: images/splash.png
