@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
 
@@ -5,6 +7,10 @@ class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
     Key? key,
   }) : super(key: key);
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +29,13 @@ class CustomDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:   const [
+              children: [
                 kbigSizedbox,
                 GadgetText(gadgetName: 'SmartPhones'),
                 kbigSizedbox,
-                GadgetText(gadgetName:'Accesories'),
+                GadgetText(gadgetName: 'Accesories'),
                 kbigSizedbox,
-                GadgetText(gadgetName:'Laptops'),
+                GadgetText(gadgetName: 'Laptops'),
                 kbigSizedbox,
                 GadgetText(gadgetName: 'iMacs'),
                 kbigSizedbox,
@@ -43,6 +49,13 @@ class CustomDrawer extends StatelessWidget {
                 kbigSizedbox,
                 GadgetText(gadgetName: 'Gaming'),
                 kbigSizedbox,
+                TextButton(
+                    onPressed: () {
+                      signUserOut();
+                    },
+                    child: Text('SignOut',
+                    style: TextStyle(fontSize: 25),
+                    ))
               ],
             ),
           )
@@ -54,19 +67,21 @@ class CustomDrawer extends StatelessWidget {
 
 class GadgetText extends StatelessWidget {
   const GadgetText({
-    Key? key, required this.gadgetName,
+    Key? key,
+    required this.gadgetName,
   }) : super(key: key);
 
   final String gadgetName;
 
   @override
   Widget build(BuildContext context) {
-    return  Text(gadgetName,
-    style: const TextStyle(
-      fontSize: 17,
-      fontWeight: FontWeight.w500,
-      color: kprimaryColor,
-    ),
+    return Text(
+      gadgetName,
+      style: const TextStyle(
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+        color: kprimaryColor,
+      ),
     );
   }
 }
