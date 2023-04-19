@@ -28,7 +28,7 @@ class ProductContainer extends StatelessWidget {
         children: [
           Image.asset(productImage),
           Container(
-            height: 120,
+            height: 110,
             width: 135,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
