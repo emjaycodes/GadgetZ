@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/welcome.dart';
-import 'components/body.dart';
+import 'components/forgot_password_body.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               size: 40,
             )),
       ),
-      body: const Body(),
+      body: ForgotPasswordBody(),
     );
   }
 }
