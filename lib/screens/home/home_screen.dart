@@ -1,24 +1,22 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oga_bassey/components/bottom_navbar.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/home/components/body.dart';
+import 'package:oga_bassey/screens/home/components/home_body.dart';
 
 import '../../components/drawer_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   static String id = 'home_screen';
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  final user = FirebaseAuth.instance.currentUser!;
 
-class _HomeScreenState extends State<HomeScreen> {
-  int selectedIndex = 0;
+  final int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            'Hi Bassey',
+            user.email!,
             style: TextStyle(color: kprimaryColor),
           ),
           // leading: IconButton(
@@ -49,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           iconTheme: IconThemeData(color: kprimaryColor),
         ),
         drawer: CustomDrawer(),
-        body: Body(),
+        body: HomeBody(),
         bottomNavigationBar: CustomNavbar());
   }
 }
