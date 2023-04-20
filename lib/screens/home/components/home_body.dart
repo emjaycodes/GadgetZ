@@ -117,7 +117,7 @@ class HomeBody extends StatelessWidget {
                 productName: 'proArt StudioBook',
                 productbrand: 'Azus',
                 productPrice: '\$2338,1',
-                productImage: 'images/Asus.png',
+                productImage: 'images/asus.png',
               ),
               ProductContainer(
                 productName: 'proArt StudioBook',
@@ -135,7 +135,7 @@ class HomeBody extends StatelessWidget {
                 productName: 'proArt StudioBook',
                 productbrand: 'Azus',
                 productPrice: '\$2338,1',
-                productImage: 'images/Asus.png',
+                productImage: 'images/asus.png',
               ),
               ProductContainer(
                 productName: 'proArt StudioBook',
