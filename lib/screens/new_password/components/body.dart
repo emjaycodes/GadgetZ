@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/components/custom_text_input_field.dart';
+import 'package:oga_bassey/components/username_textfield.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 
@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
             height: 10,
           ),
           // textfield
-          PasswordTextfield(),
+          // PasswordTextfield(),
           kbigSizedbox,
           // text that says passsword
           TextfieldName(
@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
           ),
           ksmallSizedbox,
           // textfield with icon
-          PasswordTextfield(),
+          // PasswordTextfield(),
 
           kbigSizedbox,
 
