@@ -20,7 +20,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(const Duration(milliseconds: 4500), () {});
+    await Future.delayed(const Duration(milliseconds: 3000), () {});
     Navigator.pushReplacementNamed(context, WelcomeScreen.id);
   }
 
