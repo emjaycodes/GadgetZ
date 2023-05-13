@@ -38,22 +38,41 @@ class ProductContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ksmallSizedbox,
-                  Text(productName),
+                  Text(productName,
+                  style: const TextStyle(
+                    color: kprimaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                  ),
                   // ksmallSizedbox,
-                  Text(productbrand),
-                  SizedBox(
+                  Text(productbrand,
+                  style: const TextStyle(
+                    color: kprimaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                  ),
+                  const SizedBox(
                     height: 2,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(productPrice),
+                      Text(productPrice,
+                      style: const TextStyle(
+                        color: kprimaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      
+                      ),
                       Container(
                         height: 30,
                         width: 30,
                         decoration: BoxDecoration(
                             color: ktertiaryColor,
                             borderRadius: BorderRadius.circular(5)),
+                            child: const Icon(Icons.arrow_forward_ios_outlined,
+                            size: 15,
+                            ),
                       )
                     ],
                   ),

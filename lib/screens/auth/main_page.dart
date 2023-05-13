@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:oga_bassey/screens/auth/auth.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/splash/splash.dart';
 
 
 class MainPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class MainPage extends StatelessWidget {
              return HomeScreen();
           }
           else {
-            return  LoginScreen();
+            return SplashScreen();
           }
         },
         

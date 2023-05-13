@@ -52,14 +52,14 @@ class _SignupBodyState extends State<SignupBody> {
     Navigator.pop(context);
   }
 
-  // @override
-  // void initState() {
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.initState();
+  }
 
-
+  
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -123,7 +123,10 @@ class _SignupBodyState extends State<SignupBody> {
                     print(emailController.text);
                     print(passwordController.text);
                     signUp();
-                    // Navigator.pushNamed(context, HomeScreen.id);
+                     Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen(username: usernameController.text)));
                   }),
     
               kbigSizedbox,

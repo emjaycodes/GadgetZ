@@ -11,7 +11,7 @@ import 'package:oga_bassey/screens/product_screen/product_screen.dart';
 import 'package:oga_bassey/screens/signup_body.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:oga_bassey/screens/welcome.dart';
+import 'package:oga_bassey/screens/splash/splash.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
 
 import 'components/utils.dart';
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'Oga Bassey',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor:kprimaryColor,
         fontFamily: GoogleFonts.poppins().fontFamily,
         //inputTextField Style
         inputDecorationTheme: const InputDecorationTheme(
@@ -49,7 +50,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: MainPage.id,
       routes: {
-        WelcomeScreen.id: (context) => const WelcomeScreen(),
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id: (context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
@@ -57,8 +57,8 @@ class MyApp extends StatelessWidget {
         ProductScreen.id: (context) => const ProductScreen(),
         MainPage.id: (context) => const MainPage(),
         LoginScreen.id:(context) => LoginScreen(),
-        SignupBody.id:(context) => const SignupBody()
-        // SplashScreen.id:(context) => const SplashScreen(),
+        SignupBody.id:(context) => const SignupBody(),
+        SplashScreen.id:(context) => SplashScreen(),
       },
     );
   }

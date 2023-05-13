@@ -86,8 +86,10 @@ flutter:
     - images/zen2.png
     - images/asus.png
     - images/macbook.png
-    - images/zen_pro.png
-
+    - images/zenpro.png
+    - images/iphone.png
+    - images/iphonefb.png
+    - images/ipad.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

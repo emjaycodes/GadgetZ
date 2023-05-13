@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/new_password/new_password.dart';
-import 'package:oga_bassey/screens/welcome.dart';
+import 'package:oga_bassey/screens/login_body.dart';
+
 
 class EmailNotifierScreen extends StatefulWidget {
   const EmailNotifierScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
 
   _navigatetohome() async {
     await Future.delayed(const Duration(milliseconds: 3000), () {});
-    Navigator.pushReplacementNamed(context, WelcomeScreen.id);
+    Navigator.pushReplacementNamed(context, LoginScreen.id);
   }
 
   @override
@@ -34,7 +34,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
             onPressed: () {
               Navigator.pop(
                 context,
-                MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+                MaterialPageRoute(builder: (context) =>  LoginScreen()),
               );
             },
             icon: const Icon(

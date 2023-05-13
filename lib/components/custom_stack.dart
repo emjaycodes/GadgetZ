@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -18,6 +20,12 @@ class CustomStackWidget extends StatelessWidget {
        height: 180,
        width: 300,
        decoration: BoxDecoration(
+        boxShadow: const [
+      BoxShadow(
+          color: kprimaryColor, //New
+          blurRadius: 5.0,
+          offset: Offset(-1,3))
+    ],
          color: kprimaryColor,
          borderRadius: BorderRadius.circular(20)
        ),
@@ -57,10 +65,31 @@ class CustomStackWidget extends StatelessWidget {
          height: 36,
          width: 100,
          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: const [
+                0.1,
+                0.4,
+                0.6,
+                0.9,
+              ],
+              colors: const [
+                Color(0xffEE5653),
+                Color(0xffB5008D),
+                Color(0xff5A03AC),
+                Color(0xff003FAA)
+                
+              ],
+            ),
            color: ktertiaryColor,
            borderRadius: BorderRadius.circular(8)
          ),
-         child: Center(child: Text('Buy Now')),
+         child: Center(child: Text('Buy Now',
+         style: TextStyle(
+          color: ktertiaryColor,
+         ),
+         )),
        ),
      ),
     Positioned(

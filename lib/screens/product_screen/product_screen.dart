@@ -38,7 +38,9 @@ class _ProductScreenState extends State<ProductScreen> {
               Icons.arrow_back_ios_new_outlined,
               color: kprimaryColor,
               ),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.pop(context);
+            },
             ),
             
           actions: const [

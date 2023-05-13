@@ -5,10 +5,11 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class EmailTextfield extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final emailController;
   
 
-  EmailTextfield({
+  const EmailTextfield({
     Key? key,
     this.emailController,
   }) : super(key: key);

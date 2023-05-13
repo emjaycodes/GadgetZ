@@ -22,7 +22,7 @@ class _CustomButtomState extends State<CustomButtom> {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            primary: widget.buttonColor,
+            backgroundColor: widget.buttonColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             fixedSize: const Size(300, 50)),

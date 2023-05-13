@@ -34,7 +34,7 @@ const ksmallSizedbox = SizedBox(height: 10);
 // style for the input fields text  
  TextStyle textboxNameStyle() {
     return const TextStyle(
-            color: ksecondaryTextColor,
+            color: kprimaryColor,
             fontWeight: FontWeight.w500,
             fontSize: 14,
           );

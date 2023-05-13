@@ -18,7 +18,7 @@ class _CostumNavbarState extends State<CustomNavbar> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: kprimaryColor,
         unselectedItemColor: ktertiaryColor,
-        iconSize: 30,
+        iconSize: 20,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
@@ -28,10 +28,11 @@ class _CostumNavbarState extends State<CustomNavbar> {
           ),
           BottomNavigationBarItem(
               icon: Icon(FontAwesomeIcons.heart), label: 'Like'),
+          
           BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.bagShopping), label: 'Profile'),
+              BottomNavigationBarItem(
               icon: Icon(FontAwesomeIcons.commentDots), label: 'Chat'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.user), label: 'Profile')
         ],
         currentIndex: selectedIndex,
         onTap: (int index) {

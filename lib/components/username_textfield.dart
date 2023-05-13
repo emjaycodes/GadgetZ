@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 
-class FullnameTextfield extends StatelessWidget {
-  final usernameController;
+class FullnameTextfield extends StatefulWidget {
   const FullnameTextfield({
-    Key? key, this.usernameController,
+    Key? key, required TextEditingController usernameController,
   }) : super(key: key);
+
+  @override
+  State<FullnameTextfield> createState() => _FullnameTextfieldState();
+}
+
+class _FullnameTextfieldState extends State<FullnameTextfield> {
+  final usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

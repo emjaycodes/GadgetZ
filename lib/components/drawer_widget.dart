@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
 
@@ -19,11 +18,35 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          DrawerHeader(
+           DrawerHeader(
             decoration: const BoxDecoration(
               color: kprimaryColor,
             ),
-            child: Image.asset('images/logo.png'),
+            child: Row(
+              children: const [
+                 Text('G',
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 50,
+              fontWeight: FontWeight.w700,
+            ),
+            ),
+             Text('ADGE',
+            style: TextStyle(
+              color: ktertiaryColor,
+              fontSize: 50,
+              fontWeight: FontWeight.w700,
+            ),
+            ),
+             Text('TZ',
+            style: TextStyle(
+              color: Colors.redAccent,
+              fontSize: 50,
+              fontWeight: FontWeight.w700,
+            ),
+            )
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
@@ -31,31 +54,35 @@ class CustomDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 kbigSizedbox,
-                GadgetText(gadgetName: 'SmartPhones'),
+                const GadgetText(gadgetName: 'SmartPhones'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Accesories'),
+                const GadgetText(gadgetName: 'Accesories'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Laptops'),
+                const GadgetText(gadgetName: 'Laptops'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'iMacs'),
+                const GadgetText(gadgetName: 'iMacs'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Inverter Air Conditioner'),
+                const GadgetText(gadgetName: 'Inverter Air Conditioner'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Audio'),
+                const GadgetText(gadgetName: 'Audio'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Tablets'),
+                const GadgetText(gadgetName: 'Tablets'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Smartwatches'),
+                const GadgetText(gadgetName: 'Smartwatches'),
                 kbigSizedbox,
-                GadgetText(gadgetName: 'Gaming'),
+                const GadgetText(gadgetName: 'Gaming'),
                 kbigSizedbox,
-                TextButton(
-                    onPressed: () {
-                      signUserOut();
-                    },
-                    child: Text('SignOut',
-                    style: TextStyle(fontSize: 25),
-                    ))
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        signUserOut();
+                      },
+                      child: const Text('SignOut',
+                      style: TextStyle(
+                        color: kprimaryColor,
+                        fontSize: 21),
+                      )),
+                )
               ],
             ),
           )

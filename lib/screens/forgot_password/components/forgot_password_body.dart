@@ -61,7 +61,7 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 33),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text('Forgot password',
                         style: TextStyle(
                           fontSize: 18,
@@ -75,7 +75,7 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
               kbigSizedbox,
               //text
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
                   'Enter the email address associated wth your account to reset your password.',
                   style: TextStyle(

@@ -77,7 +77,7 @@ class _ProductBodyState extends State<ProductBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductContainer(
-                 productImage: 'images/Asus.png', 
+                 productImage: 'images/asus.png', 
               productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
               ProductContainer(
                  productImage: 'images/zen2.png', 
@@ -92,7 +92,7 @@ class _ProductBodyState extends State<ProductBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductContainer(
-                 productImage: 'images/zen_pro.png', 
+                 productImage: 'images/zenpro.png', 
               productName: 'Zenbook pro Duo', productPrice: 'Azus', productbrand: '\$3096,97',),
               ProductContainer(
                  productImage: 'images/macbook.png', 
@@ -107,7 +107,7 @@ class _ProductBodyState extends State<ProductBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductContainer(
-                 productImage: 'images/Asus.png', 
+                 productImage: 'images/asus.png', 
               productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
               ProductContainer(
                  productImage: 'images/macbook.png', 

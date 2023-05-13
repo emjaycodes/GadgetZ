@@ -9,6 +9,7 @@ import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 
 import 'package:oga_bassey/components/custom_button.dart';
+import 'package:oga_bassey/screens/home/home_screen.dart';
 import 'package:oga_bassey/screens/signup_body.dart';
 import 'package:oga_bassey/services/auth_services.dart';
 
@@ -46,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       Navigator.pop(context);
+      
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
 
@@ -133,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             // text that says forgot password
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -144,6 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       'forgot password?',
+                      style: TextStyle(
+                        color: kprimaryColor,
+                      ),
                     ),
                   ),
                 ],
@@ -157,7 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 buttonColor: kdisabledButtonColor,
                 textStyle: ksignupbuttonTextStyle(),
                 onPressed: () {
+                  
                   signInUser();
+                  // Navigator.popAndPushNamed(context, HomeScreen.id);
                 }),
 
             kbigSizedbox,

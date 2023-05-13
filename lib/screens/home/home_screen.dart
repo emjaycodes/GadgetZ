@@ -10,7 +10,7 @@ import 'package:oga_bassey/screens/home/components/home_body.dart';
 import '../../components/drawer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key, this.username = ''}) : super(key: key);
 
   static String id = 'home_screen';
 
@@ -18,13 +18,15 @@ class HomeScreen extends StatelessWidget {
 
   final int selectedIndex = 0;
 
+  String username;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            user.email!,
+            'Hi there',
             style: TextStyle(color: kprimaryColor),
           ),
           // leading: IconButton(
