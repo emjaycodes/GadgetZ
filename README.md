@@ -1,16 +1,17 @@
 # Gadgetz
 
-A new Flutter project.
 
-## Getting Started
+# e_wallet_app
 
-This project is a starting point for a Flutter application.
+A wallet ui inspired by [daria kravets](https://dribbble.com/shots/19727846-Money-Transfer-App)
 
-A few resources to get you started if this is your first Flutter project:
+The wallet app ui has two pages homepage which houses the dashboard,send and receive button and the other page is the transaction page where money transfers can be made.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+![](https://github.com/emjaycodes/Transfer./blob/master/walletui.png)
+
+## 0utput
+![](https://github.com/emjaycodes/Transfer./blob/master/wallet.gif)
+
+
