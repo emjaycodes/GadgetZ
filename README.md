@@ -12,6 +12,6 @@ this application uses firbase for authentication, google sign in.
 ![](https://github.com/emjaycodes/GadgetZ/blob/master/gadget.webp)
 
 ## 0utput
-![](https://github.com/emjaycodes/GadgetZ/blob/master/gadget.gif)
+![](https://github.com/emjaycodes/GadgetZ/blob/master/gadgetz.gif)
 
 
