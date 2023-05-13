@@ -1,12 +1,12 @@
 # Gadgetz
 
 
-# e_wallet_app
+# Ecommerce app 
 
-A wallet ui inspired by [daria kravets](https://dribbble.com/shots/19727846-Money-Transfer-App)
+A Ecommerce app inspired by [jelly](https://dribbble.com/shots/15625686-Gejedin-Gadget-Store-Mobile-App)
 
-The wallet app ui has two pages homepage which houses the dashboard,send and receive button and the other page is the transaction page where money transfers can be made.
-
+The app has nine pages from splash screen to welcome screen, login and signup screen, forgot password screen etc.....
+this application uses firbase for authentication, google sign in.
 
 
 ![](https://github.com/emjaycodes/Transfer./blob/master/walletui.png)
