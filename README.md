@@ -9,9 +9,9 @@ The app has nine pages from splash screen to welcome screen, login and signup sc
 this application uses firbase for authentication, google sign in.
 
 
-![](https://github.com/emjaycodes/Transfer./blob/master/walletui.png)
+![](https://github.com/emjaycodes/GadgetZ/blob/master/gadget.webp)
 
 ## 0utput
-![](https://github.com/emjaycodes/Transfer./blob/master/wallet.gif)
+![](https://github.com/emjaycodes/GadgetZ/blob/master/gadget.gif)
 
 
