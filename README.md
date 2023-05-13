@@ -1,16 +1,17 @@
-# oga_bassey
+# Gadgetz
 
-A new Flutter project.
 
-## Getting Started
+# Ecommerce app 
 
-This project is a starting point for a Flutter application.
+A Ecommerce app inspired by [jelly](https://dribbble.com/shots/15625686-Gejedin-Gadget-Store-Mobile-App)
 
-A few resources to get you started if this is your first Flutter project:
+The app has nine pages from splash screen to welcome screen, login and signup screen, forgot password screen etc.....
+this application uses firbase for authentication, google sign in.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](https://github.com/emjaycodes/Transfer./blob/master/walletui.png)
+
+## 0utput
+![](https://github.com/emjaycodes/Transfer./blob/master/wallet.gif)
+
+
