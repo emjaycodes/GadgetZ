@@ -9,7 +9,6 @@ import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 
 import 'package:oga_bassey/components/custom_button.dart';
-import 'package:oga_bassey/screens/home/home_screen.dart';
 import 'package:oga_bassey/screens/signup_body.dart';
 import 'package:oga_bassey/services/auth_services.dart';
 
@@ -17,7 +16,7 @@ class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
   // final VoidCallback showSigupPage;
 
-  LoginScreen({
+  const LoginScreen({
     Key? key,
   }) : super(key: key);
 
@@ -53,17 +52,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
       //wrong email
       if (e.code == 'user-not-found') {
-        WrongEmailMessage();
+        wrongEmailMessage();
         print('no user found for that email');
       } else if (e.code == 'wrong-password') {
-        WrongPasswordMessage();
+        wrongPasswordMessage();
         print('wrong password buddy');
       }
     }
   }
 
   // wrong email message pupup
-  void WrongEmailMessage() {
+  void wrongEmailMessage() {
     showDialog(
         context: context,
         builder: (context) {
@@ -73,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 
-  void WrongPasswordMessage() {
+  void wrongPasswordMessage() {
     showDialog(
         context: context,
         builder: (context) {
@@ -236,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // widget.showSigupPage;
+                    //showSigupPage;
                     Navigator.pushNamed(context, SignupBody.id);
                   },
                   child: Text(

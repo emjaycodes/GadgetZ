@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class HorizontalStackScroll extends StatelessWidget {
   final Text gadgetType;
   final Text productAmount;

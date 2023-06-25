@@ -7,11 +7,11 @@ bool hidePassword = true;
 
 
 class PasswordTextfield extends StatefulWidget {
-final passwordController;
+final TextEditingController passwordController;
 
   PasswordTextfield({
     Key? key,
-    this.passwordController,
+    required this.passwordController,
   }) : super(key: key);
 
   @override

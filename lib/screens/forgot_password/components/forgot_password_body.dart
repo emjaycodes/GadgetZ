@@ -11,7 +11,7 @@ import 'package:oga_bassey/screens/login_body.dart';
 
 
 class ForgotPasswordBody extends StatefulWidget {
-  ForgotPasswordBody({Key? key}) : super(key: key);
+  const ForgotPasswordBody({Key? key}) : super(key: key);
 
   @override
   State<ForgotPasswordBody> createState() => _ForgotPasswordBodyState();

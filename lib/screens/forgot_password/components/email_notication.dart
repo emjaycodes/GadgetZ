@@ -21,7 +21,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
 
   _navigatetohome() async {
     await Future.delayed(const Duration(milliseconds: 3000), () {});
-    Navigator.pushReplacementNamed(context, LoginScreen.id);
+    Navigator.of(context).pushReplacementNamed(LoginScreen.id);
   }
 
   @override
@@ -34,7 +34,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
             onPressed: () {
               Navigator.pop(
                 context,
-                MaterialPageRoute(builder: (context) =>  LoginScreen()),
+                MaterialPageRoute(builder: (context) =>  const LoginScreen()),
               );
             },
             icon: const Icon(

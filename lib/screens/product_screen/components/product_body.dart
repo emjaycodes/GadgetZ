@@ -76,12 +76,27 @@ class _ProductBodyState extends State<ProductBody> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProductContainer(
-                 productImage: 'images/asus.png', 
-              productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
-              ProductContainer(
-                 productImage: 'images/zen2.png', 
-              productName: 'Zenbook Duo', productPrice: 'Azus', productbrand: '\$1272,2',)
+          //       ProductContainer(
+          //        productImage: 'images/asus.png', 
+          //     productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
+          //     ProductContainer(
+          //        productImage: 'images/zen2.png', 
+          //     productName: 'Zenbook Duo', productPrice: 'Azus', productbrand: '\$1272,2',)
+          //     ],
+          //   ),
+          // ),
+          // kbigSizedbox,
+          // Padding(
+          //   padding: const EdgeInsets.all(20.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       ProductContainer(
+          //        productImage: 'images/zenpro.png', 
+          //     productName: 'Zenbook pro Duo', productPrice: 'Azus', productbrand: '\$3096,97',),
+          //     ProductContainer(
+          //        productImage: 'images/macbook.png', 
+          //     productName: 'Macbook Pro', productPrice: 'Apple', productbrand: '\$1238,75',)
               ],
             ),
           ),
@@ -91,27 +106,12 @@ class _ProductBodyState extends State<ProductBody> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ProductContainer(
-                 productImage: 'images/zenpro.png', 
-              productName: 'Zenbook pro Duo', productPrice: 'Azus', productbrand: '\$3096,97',),
-              ProductContainer(
-                 productImage: 'images/macbook.png', 
-              productName: 'Macbook Pro', productPrice: 'Apple', productbrand: '\$1238,75',)
-              ],
-            ),
-          ),
-          kbigSizedbox,
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ProductContainer(
-                 productImage: 'images/asus.png', 
-              productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
-              ProductContainer(
-                 productImage: 'images/macbook.png', 
-              productName: 'Macbook pro 2', productPrice: 'Apple', productbrand: '\$1354,11',)
+              //   ProductContainer(
+              //    productImage: 'images/asus.png', 
+              // productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
+              // ProductContainer(
+              //    productImage: 'images/macbook.png', 
+              // productName: 'Macbook pro 2', productPrice: 'Apple', productbrand: '\$1354,11',)
               ],
             ),
           )
@@ -143,8 +143,8 @@ class ProductRows extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ProductContainer(productImage: productImage1, productName: productName1, productbrand: productbrand1, productPrice: productPrice1,),
-        ProductContainer(productImage: productImage1, productName: productName1, productbrand: productbrand1, productPrice: productPrice1,),
+        // ProductContainer(productImage: productImage1, productName: productName1, productbrand: productbrand1, productPrice: productPrice1,),
+        // ProductContainer(productImage: productImage1, productName: productName1, productbrand: productbrand1, productPrice: productPrice1,),
       ],
     );
   }

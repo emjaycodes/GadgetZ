@@ -6,15 +6,15 @@ import '../constants.dart';
 class ProductContainer extends StatelessWidget {
   final String productName;
   final String productbrand;
-  final String productPrice;
-  final String productImage;
+  final double productPrice;
+  // final String productImage;
 
   const ProductContainer({
     super.key,
     required this.productName,
     required this.productbrand,
     required this.productPrice,
-    required this.productImage,
+    // required this.productImage,
   });
 
   @override
@@ -26,7 +26,9 @@ class ProductContainer extends StatelessWidget {
           color: ktertiaryColor, borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: [
-          Image.asset(productImage),
+          SizedBox(
+            // child: Image.asset(productImage)
+            ),
           Container(
             height: 110,
             width: 135,
@@ -57,7 +59,7 @@ class ProductContainer extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(productPrice,
+                      Text(productPrice.toString(),
                       style: const TextStyle(
                         color: kprimaryColor,
                         fontWeight: FontWeight.w700,
