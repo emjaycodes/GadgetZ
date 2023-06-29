@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:oga_bassey/bloc/product_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
-import 'package:oga_bassey/models/product_list.dart';
-import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
+
+import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
 
@@ -38,16 +38,9 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   void initState() {
-    // productList;
-    _productBloc = ProductBloc();
+    _productBloc = BlocProvider.of<ProductBloc>(context);
     _productBloc.add(FetchProductsEvent());
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _productBloc.close();
-    super.dispose();
   }
 
   @override
@@ -217,55 +210,57 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         kbigSizedbox,
         Expanded(
-            child: StreamBuilder<List<Product>>(
-          stream: _productBloc.productStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final List<Product>? products = snapshot.data;
-              return GridView.builder(
-                itemCount: products!.length,
-                padding: EdgeInsets.all(12),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 1 / 1.7,
-                ),
-                itemBuilder: (context, index) {
-                  final Product product = products[index];
-                  return ProductContainer(
-                    productName: product.name,
-                    productPrice: product.price,
-                    productbrand: product.brand,
-                    // productImage: product.image,
-                  );
-                },
-              );
-            } else if (snapshot.hasError) {
-              print(snapshot.error.toString());
-              return Text('Error: ${snapshot.error}');
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-          // child: GridView.builder(
-          //   itemCount: productlList.product.length,
-          //   padding: EdgeInsets.all(12),
-          //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 2,
-          //     crossAxisSpacing: 10,
-          //     mainAxisSpacing: 16,
-          //     childAspectRatio: 1 / 1.7,
-          //   ),
-          //   itemBuilder: (context, index) {
-          //     return ProductContainer(
-          //         productName: productlList.product[index][0],
-          //         productPrice: productlList.product[index][1],
-          //         productbrand: productlList.product[index][2],
-          //         productImage: productlList.product[index][3]);
-          //   },
-          // ),
-        )),
+          child: BlocBuilder<ProductBloc, ProductState>(
+            bloc: _productBloc,
+            builder: (context, state) {
+              if (state is ProductsUpdatedState) {
+                final List<Product> products = state.products;
+
+                return GridView.builder(
+                  itemCount: products.length,
+                  padding: EdgeInsets.all(12),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: 1 / 1.7,
+                  ),
+                  itemBuilder: (context, index) {
+                    final Product product = products[index];
+                    return ProductContainer(
+                      productName: product.name,
+                      productPrice: product.price,
+                      productbrand: product.brand,
+                      // productImage: product.image,
+                    );
+                  },
+                );
+              } else if (state is ProductErrorState) {
+                print(state.errorMessage.toString());
+                return Text('Error: ${state.errorMessage.toString()}');
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+            // child: GridView.builder(
+            //   itemCount: productlList.product.length,
+            //   padding: EdgeInsets.all(12),
+            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            //     crossAxisCount: 2,
+            //     crossAxisSpacing: 10,
+            //     mainAxisSpacing: 16,
+            //     childAspectRatio: 1 / 1.7,
+            //   ),
+            //   itemBuilder: (context, index) {
+            //     return ProductContainer(
+            //         productName: productlList.product[index][0],
+            //         productPrice: productlList.product[index][1],
+            //         productbrand: productlList.product[index][2],
+            //         productImage: productlList.product[index][3]);
+            //   },
+            // ),
+          ),
+        ),
       ],
     );
   }
