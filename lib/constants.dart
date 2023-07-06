@@ -11,27 +11,6 @@ const ktertiaryColor = Color(0xFFDBDFE4);
 const kbigSizedbox = SizedBox(height: 20);
 const ksmallSizedbox = SizedBox(height: 10);
 
-// textinput field
-// class SignupTextfield extends StatelessWidget {
-//   const SignupTextfield({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//      width: 370,
-//       child: TextFormField(
-//        decoration: InputDecoration(
-//          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0))
-//          // border: InputBorder.none
-//        ),
-//       ),
-//     );
-//   }
-// }
-
-// style for the input fields text  
  TextStyle textboxNameStyle() {
     return const TextStyle(
             color: kprimaryColor,
