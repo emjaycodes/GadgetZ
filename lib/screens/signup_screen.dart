@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/components/email_textfield.dart';
@@ -8,10 +6,13 @@ import 'package:oga_bassey/components/password_textfield.dart';
 import 'package:oga_bassey/components/social_media_card.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/components/username_textfield.dart';
+import 'package:oga_bassey/components/utils.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/login_screen.dart';
 import 'package:oga_bassey/services/auth_services.dart';
+
+final AuthService _authService = AuthService();
 
 class SignupBody extends StatefulWidget {
   static String id = 'signup_screen';
@@ -30,42 +31,6 @@ class _SignupBodyState extends State<SignupBody> {
   late final TextEditingController passwordController;
   late final TextEditingController usernameController;
 
-  // TODO: Extract the sign in and sign up functions to service or Bloc files
-  Future signUp() async {
-    // final isvalid = formkey.currentState!.validate();
-    // if (!isvalid) return;
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      // TODO: I don't think signing up is signin in. After successful signin up,
-      // re-route to sign in screen or call signin function.
-      if (mounted) {
-        Navigator.pop(context);
-      }
-    } on FirebaseAuthException catch (e) {
-      // TODO: Handle the error visually. Maybe show a SnackBar
-      print(e);
-      rethrow;
-    }
-    // TODO: I can't figure out these poppings. If the signin was not successful,
-    // should remove the CircularProgressIndicator. In fact, you should not use
-    // AlertDialog to cover the screen. Bad UX cos the user can dismiss it.
-    // You should create a cover controlled by a bool or a Bloc manually.
-    if (mounted) {
-      Navigator.pop(context);
-    }
-  }
 
   @override
   void initState() {
@@ -145,7 +110,8 @@ class _SignupBodyState extends State<SignupBody> {
                   textStyle: ksignupbuttonTextStyle(),
                   onPressed: () async {
                     try {
-                      await signUp();
+                      await authService.signUpUser(emailController.text,
+                          passwordController.text, context);
 
                       // Should only move to home screen if signup was successful.
                       if (mounted) {
@@ -159,8 +125,7 @@ class _SignupBodyState extends State<SignupBody> {
                       }
                     } catch (e) {
                       // TODO: Extract SnackBar
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                      UIUtils.showSnackBar(context, e.toString());
                     }
                   },
                 ),
@@ -241,7 +206,7 @@ class _SignupBodyState extends State<SignupBody> {
                         onTap: () {
                           // widget.showLoginPage;
                           // Navigator.pop(context);
-                          Navigator.pushNamed(context, LoginScreen.id);
+                          Navigator.pushReplacementNamed(context, LoginScreen.id);
                         },
                       ),
                     ),

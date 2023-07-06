@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/login_screen.dart';
 
 
 class EmailNotifierScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
             onPressed: () {
               Navigator.pop(
                 context,
-                MaterialPageRoute(builder: (context) =>  const LoginScreen()),
+                MaterialPageRoute(builder: (context) =>  LoginScreen()),
               );
             },
             icon: const Icon(
@@ -43,10 +43,10 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
               size: 40,
             )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
+      body: const Padding(
+        padding: EdgeInsets.all(20.0),
         child: Column(
-          children: const [
+          children: [
             kbigSizedbox,
             CircleAvatar(
                 maxRadius: 60, backgroundImage: AssetImage('images/email.png')),

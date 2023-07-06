@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/auth/main_page.dart';
+import 'package:oga_bassey/screens/auth/authentication_flow_screen.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
@@ -11,7 +11,7 @@ import 'package:oga_bassey/screens/login_screen.dart';
 import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/product_screen/product_screen.dart';
 import 'package:oga_bassey/screens/signup_screen.dart';
-import 'package:oga_bassey/screens/splash/splash.dart';
+import 'package:oga_bassey/screens/splash/IntroScreen.dart';
 
 import 'blocs/product_bloc/product_bloc.dart';
 import 'firebase_options.dart';
@@ -38,8 +38,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // ScaffoldMessengerkey:
-    // Utils.messengerKey;
     return MaterialApp(
       title: 'Oga Bassey',
       debugShowCheckedModeBanner: false,
@@ -59,17 +57,18 @@ class MyApp extends StatelessWidget {
       // login screen. When you move to Sign up screen, login screen should be replaced with
       // sign up screen. When you finally move to home screen, Nothing should be under.
       // Using a StreamBuilder is not the best way.
-      initialRoute: MainPage.id,
+      initialRoute: AuthenticationFlowScreen.id,
       routes: {
+        IntroScreen.id: (context) => const IntroScreen(),
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id: (context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         ProductScreen.id: (context) => const ProductScreen(),
-        MainPage.id: (context) => const MainPage(),
+        AuthenticationFlowScreen.id: (context) => const AuthenticationFlowScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         SignupBody.id: (context) => const SignupBody(),
-        SplashScreen.id: (context) => SplashScreen(),
+        
       },
     );
   }

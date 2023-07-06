@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/constants.dart';
 
 
@@ -106,12 +105,7 @@ class _ProductBodyState extends State<ProductBody> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              //   ProductContainer(
-              //    productImage: 'images/asus.png', 
-              // productName: 'proArt StudioBook', productPrice: 'Azus', productbrand: '\$2338,1',),
-              // ProductContainer(
-              //    productImage: 'images/macbook.png', 
-              // productName: 'Macbook pro 2', productPrice: 'Apple', productbrand: '\$1354,11',)
+
               ],
             ),
           )

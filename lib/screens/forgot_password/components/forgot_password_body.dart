@@ -7,7 +7,7 @@ import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/login_screen.dart';
 
 
 class ForgotPasswordBody extends StatefulWidget {

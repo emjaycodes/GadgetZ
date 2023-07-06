@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/components/email_textfield.dart';
@@ -8,10 +7,12 @@ import 'package:oga_bassey/components/social_media_card.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
-import 'package:oga_bassey/screens/signup_body.dart';
+import 'package:oga_bassey/screens/signup_screen.dart';
 import 'package:oga_bassey/services/auth_services.dart';
 
 import 'home/home_screen.dart';
+
+final AuthService authService = AuthService();
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -30,68 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //signInUser
-  Future<void> signInUser() async {
-    //show loading
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    //sign in
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      if (mounted) {
-        // TODO: All these popping for login and signup screens are unneccessary.
-        // If you want to remove all screens under,
-        // use Navigator.of(context).pushAndRemoveUntil() or popUntil();
-        Navigator.pop(context);
-      }
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-
-      //wrong email
-      if (e.code == 'user-not-found') {
-        wrongEmailMessage();
-        print('no user found for that email');
-      } else if (e.code == 'wrong-password') {
-        wrongPasswordMessage();
-        print('wrong password buddy');
-      }
-      rethrow;
-    }
-  }
-
-  // wrong email message pupup
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Incorrect Email'),
-        );
-      },
-    );
-  }
-
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Incorrect password'),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -102,8 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ksmallSizedbox,
               // text that says create account
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -118,14 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
               kbigSizedbox,
               kdivider,
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               // that says email
-              TextfieldName(
+              const TextfieldName(
                 text: 'Email address',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
 
@@ -153,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushReplacementNamed(
                             context, ForgotPasswordScreen.id);
                       },
-                      child: Text(
+                      child: const Text(
                         'forgot password?',
                         style: TextStyle(
                           color: kprimaryColor,
@@ -172,7 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   textStyle: ksignupbuttonTextStyle(),
                   onPressed: () {
                     try {
-                      signInUser();
+                      authService.signInUser(emailController.text,
+                          passwordController.text, context);
                       Navigator.popAndPushNamed(context, HomeScreen.id);
                     } catch (e) {
                       print(e);
@@ -182,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
               kbigSizedbox,
 
               // row with divider with a text 'row'
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
@@ -222,12 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: () {
                         AuthService().signInWithGoogle();
                       },
-                      socialImage: AssetImage('images/google.png'),
+                      socialImage: const AssetImage('images/google.png'),
                     ),
-                    SocialMediaCard(
+                    const SocialMediaCard(
                       socialImage: AssetImage('images/apple.png'),
                     ),
-                    SocialMediaCard(
+                    const SocialMediaCard(
                       socialImage: AssetImage('images/facebook.png'),
                     )
                   ],
@@ -240,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Don\'t have an account? ',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
@@ -248,10 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      
                       //showSigupPage;
-                      Navigator.pushNamed(context, SignupBody.id);
+                      Navigator.pushReplacementNamed(context, SignupBody.id);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign up',
                       style: TextStyle(
                         color: kprimaryColor,

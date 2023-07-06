@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
-import 'package:oga_bassey/screens/splash/splash.dart';
+import 'package:oga_bassey/screens/splash/IntroScreen.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+class AuthenticationFlowScreen extends StatelessWidget {
+  const AuthenticationFlowScreen({super.key});
   static String id = 'main screen';
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
           if (snapshot.hasData) {
             return HomeScreen();
           } else {
-            return SplashScreen();
+            return const IntroScreen();
           }
         },
       ),
