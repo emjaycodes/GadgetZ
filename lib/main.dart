@@ -7,10 +7,10 @@ import 'package:oga_bassey/screens/auth/main_page.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/login_screen.dart';
 import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/product_screen/product_screen.dart';
-import 'package:oga_bassey/screens/signup_body.dart';
+import 'package:oga_bassey/screens/signup_screen.dart';
 import 'package:oga_bassey/screens/splash/splash.dart';
 
 import 'blocs/product_bloc/product_bloc.dart';
