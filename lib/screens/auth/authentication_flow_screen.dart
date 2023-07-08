@@ -9,10 +9,11 @@ class AuthenticationFlowScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: This StreamBuilder is useless since you handle Navigation again
-      // normally in the app. To implement what you have in mind, a you'll have
-      // to use a Bloc to handle authentication. Then you can use a listener on
-      // the Bloc.
+      /* TODO: This StreamBuilder is useless since you handle Navigation again normally in the app.
+       To implement what you have in mind, a you'll have
+      to use a Bloc to handle authentication. Then you can use a listener on
+       the Bloc.*/
+       
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

@@ -1,16 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/components/email_textfield.dart';
 import 'package:oga_bassey/components/password_textfield.dart';
 import 'package:oga_bassey/components/social_media_card.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/components/username_textfield.dart';
-import 'package:oga_bassey/components/utils.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/home/home_screen.dart';
 import 'package:oga_bassey/screens/login_screen.dart';
 import 'package:oga_bassey/services/auth_services.dart';
+
+import '../blocs/auth_bloc/authentication_bloc.dart';
 
 final AuthService _authService = AuthService();
 
@@ -30,7 +32,6 @@ class _SignupBodyState extends State<SignupBody> {
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final TextEditingController usernameController;
-
 
   @override
   void initState() {
@@ -105,30 +106,40 @@ class _SignupBodyState extends State<SignupBody> {
 
                 // sign up buttun
                 CustomButtom(
-                  buttonName: 'Signup',
-                  buttonColor: kdisabledButtonColor,
-                  textStyle: ksignupbuttonTextStyle(),
-                  onPressed: () async {
-                    try {
-                      await authService.signUpUser(emailController.text,
-                          passwordController.text, context);
-
-                      // Should only move to home screen if signup was successful.
-                      if (mounted) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                HomeScreen(username: usernameController.text),
-                          ),
-                        );
-                      }
-                    } catch (e) {
-                      // TODO: Extract SnackBar
-                      UIUtils.showSnackBar(context, e.toString());
+                    buttonName: 'Signup',
+                    buttonColor: kdisabledButtonColor,
+                    textStyle: ksignupbuttonTextStyle(),
+                    onPressed: () async {
+                      context.read<AuthenticationBloc>().add(
+                            SignUpUser(
+                                emailController.text, passwordController.text),
+                          );
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, HomeScreen.id, (route) => false);
                     }
-                  },
-                ),
+
+                    // try {
+                    //   await authService.signUpUser(
+                    //     emailController.text,
+                    //     passwordController.text,
+                    //   );
+
+                    //   // Should only move to home screen if signup was successful.
+                    //   if (mounted) {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => HomeScreen(
+                    //             username: usernameController.text),
+                    //       ),
+                    //     );
+                    //   }
+                    // } catch (e) {
+                    //   // TODO: Extract SnackBar
+                    //   UIUtils.showSnackBar(context, e.toString());
+                    // }
+
+                    ),
 
                 kbigSizedbox,
 
@@ -206,7 +217,8 @@ class _SignupBodyState extends State<SignupBody> {
                         onTap: () {
                           // widget.showLoginPage;
                           // Navigator.pop(context);
-                          Navigator.pushReplacementNamed(context, LoginScreen.id);
+                          Navigator.pushReplacementNamed(
+                              context, LoginScreen.id);
                         },
                       ),
                     ),

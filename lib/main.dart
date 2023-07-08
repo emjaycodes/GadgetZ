@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/auth/authentication_flow_screen.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
@@ -22,11 +23,19 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    BlocProvider<ProductBloc>(
+    MultiBlocProvider(
       // NOTE: The Bloc must be created once and accessed from anywhere in
       // the app through BlocProvider.of<T>(context) or context.read<T>().
       // It will be autodisposed by the BlocProvider when the app is closed.
-      create: (context) => ProductBloc(),
+    
+      providers: [
+        BlocProvider(
+          create: (context) => ProductBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AuthenticationBloc(),
+        )
+      ],
       child: const MyApp(),
     ),
   );

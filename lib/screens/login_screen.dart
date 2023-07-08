@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 import 'package:oga_bassey/components/email_textfield.dart';
 import 'package:oga_bassey/components/password_textfield.dart';
@@ -9,10 +10,6 @@ import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
 import 'package:oga_bassey/screens/signup_screen.dart';
 import 'package:oga_bassey/services/auth_services.dart';
-
-import 'home/home_screen.dart';
-
-final AuthService authService = AuthService();
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -110,13 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   buttonColor: kdisabledButtonColor,
                   textStyle: ksignupbuttonTextStyle(),
                   onPressed: () {
-                    try {
-                      authService.signInUser(emailController.text,
-                          passwordController.text, context);
-                      Navigator.popAndPushNamed(context, HomeScreen.id);
-                    } catch (e) {
-                      print(e);
-                    }
+                    BlocProvider.of<AuthenticationBloc>(context).add(SignInUser(
+                        emailController.text, passwordController.text));
                   }),
 
               kbigSizedbox,
@@ -188,7 +180,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      
                       //showSigupPage;
                       Navigator.pushReplacementNamed(context, SignupBody.id);
                     },
