@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oga_bassey/models/user_model.dart';
 
 class AuthService {
   final fb_auth.FirebaseAuth _firebaseAuth = fb_auth.FirebaseAuth.instance;
 
- Future <UserModel?> getCurrentUser() async {
+  Future<UserModel?> getCurrentUser() async {
     final fb_auth.User? firebaseUser = _firebaseAuth.currentUser;
 
     if (firebaseUser != null) {
@@ -17,30 +18,53 @@ class AuthService {
     return null;
   }
 
-  Future<void> signInUser(
+  Future<UserModel?> signInUser(
     String email,
     String password,
   ) async {
     //signin the user
-    await _firebaseAuth.signInWithEmailAndPassword(
-      email: email.trim(),
-      password: password.trim(),
-    );
+    try {
+      final fb_auth.UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
+      );
+      final fb_auth.User? firebaseUser = userCredential.user;
+      if (firebaseUser != null) {
+        return UserModel(
+            id: firebaseUser.uid,
+            email: firebaseUser.email ?? '',
+            displayName: firebaseUser.displayName ?? '');
+      }
+    } catch (e) {
+      print('sign in error: $e');
+    }
+    return null;
   }
 
-  Future signUpUser(
+  Future<UserModel?> signUpUser(
     String email,
     String password,
   ) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final fb_auth.UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: email.trim(),
         password: password.trim(),
       );
+      final fb_auth.User? firebaseUser = userCredential.user;
+      if (firebaseUser != null) {
+        return UserModel(
+          id: firebaseUser.uid,
+          email: firebaseUser.email ?? '',
+          displayName: firebaseUser.displayName ?? '',
+        );
+      }
     } on fb_auth.FirebaseAuthException catch (e) {
       print(e);
       rethrow;
     }
+    return null;
   }
 
   Future<void> signOutUser() async {
