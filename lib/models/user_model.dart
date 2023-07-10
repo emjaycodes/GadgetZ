@@ -1,8 +1,8 @@
 
 class UserModel {
   final String id;
-  final String email;
-  final String displayName;
+  final String? email;
+  final String? displayName;
 
 
   UserModel({
@@ -10,4 +10,6 @@ class UserModel {
     required this.email,
     required this.displayName,
   });
+
+  
 }

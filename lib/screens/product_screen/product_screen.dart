@@ -57,6 +57,6 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
         drawer: CustomDrawer(),
         body: ProductBody(),
-        bottomNavigationBar: CustomNavbar());
+       );
   }
 }

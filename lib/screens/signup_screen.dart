@@ -105,41 +105,29 @@ class _SignupBodyState extends State<SignupBody> {
                 kbigSizedbox,
 
                 // sign up buttun
-                CustomButtom(
-                    buttonName: 'Signup',
-                    buttonColor: kdisabledButtonColor,
-                    textStyle: ksignupbuttonTextStyle(),
-                    onPressed: () async {
-                      context.read<AuthenticationBloc>().add(
-                            SignUpUser(
-                                emailController.text, passwordController.text),
-                          );
+                BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                  listener: (context, state) {
+                    if (state is AuthenticationSuccessState) {
                       Navigator.pushNamedAndRemoveUntil(
                           context, HomeScreen.id, (route) => false);
                     }
-
-                    // try {
-                    //   await authService.signUpUser(
-                    //     emailController.text,
-                    //     passwordController.text,
-                    //   );
-
-                    //   // Should only move to home screen if signup was successful.
-                    //   if (mounted) {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) => HomeScreen(
-                    //             username: usernameController.text),
-                    //       ),
-                    //     );
-                    //   }
-                    // } catch (e) {
-                    //   // TODO: Extract SnackBar
-                    //   UIUtils.showSnackBar(context, e.toString());
-                    // }
-
-                    ),
+                  },
+                  builder: (context, state) {
+                    return CustomButtom(
+                        buttonName: state is! AuthenticationLoadingState
+                            ? 'Signup'
+                            : '----',
+                        buttonColor: kdisabledButtonColor,
+                        textStyle: ksignupbuttonTextStyle(),
+                        onPressed: () {
+                          context.read<AuthenticationBloc>().add(
+                                SignUpUser(emailController.text,
+                                    passwordController.text),
+                              );
+                        }
+                        );
+                  },
+                ),
 
                 kbigSizedbox,
 

@@ -6,12 +6,15 @@ import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
+import 'package:oga_bassey/screens/favourite_screen.dart';
+import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
 
 import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
 
 class HomeBody extends StatefulWidget {
+  
   const HomeBody({Key? key}) : super(key: key);
 
   @override
@@ -19,6 +22,7 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  
   bool istapped = true;
 
   void toggleColour() {
@@ -199,7 +203,7 @@ class _HomeBodyState extends State<HomeBody> {
               padding: const EdgeInsets.only(right: 22.0),
               child: GestureDetector(
                   onTap: () {
-                    // Navigator.pushNamed(context, ProductBody.id);
+                    Navigator.pushNamed(context, ProductBody.id);
                   },
                   child: Text(
                     'See all',
@@ -242,23 +246,6 @@ class _HomeBodyState extends State<HomeBody> {
                 return Center(child: CircularProgressIndicator());
               }
             },
-            // child: GridView.builder(
-            //   itemCount: productlList.product.length,
-            //   padding: EdgeInsets.all(12),
-            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //     crossAxisCount: 2,
-            //     crossAxisSpacing: 10,
-            //     mainAxisSpacing: 16,
-            //     childAspectRatio: 1 / 1.7,
-            //   ),
-            //   itemBuilder: (context, index) {
-            //     return ProductContainer(
-            //         productName: productlList.product[index][0],
-            //         productPrice: productlList.product[index][1],
-            //         productbrand: productlList.product[index][2],
-            //         productImage: productlList.product[index][3]);
-            //   },
-            // ),
           ),
         ),
       ],

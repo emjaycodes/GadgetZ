@@ -7,48 +7,90 @@ import 'package:oga_bassey/components/bottom_navbar.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/home/components/home_screen_body.dart';
 import '../../components/drawer_widget.dart';
+import '../favourite_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key, this.username = ''}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, this.username = ''}) : super(key: key);
 
   static String id = 'home_screen';
+  final String username;
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser!;
 
-  final int selectedIndex = 0;
+  late int selectedIndex = 0;
 
-  final String username;
+  final List screens = [
+    HomeBody(),
+    FavouriteScreen(),
+  ]; 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Text(
-            'Hi there',
-            style: TextStyle(color: kprimaryColor),
-          ),
-          // leading: IconButton(
-          //   icon: Icon(
-          //     Icons.segment_outlined,
-          //     color: kprimaryColor,
-          //     ),
-          //   onPressed: (){},
-          //   ),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: Icon(
-                FontAwesomeIcons.bagShopping,
-                color: kprimaryColor,
-              ),
-            )
-          ],
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: kprimaryColor),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          'Hi there',
+          style: TextStyle(color: kprimaryColor),
         ),
-        drawer: CustomDrawer(),
-        body: HomeBody(),
-        bottomNavigationBar: CustomNavbar());
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.segment_outlined,
+        //     color: kprimaryColor,
+        //     ),
+        //   onPressed: (){},
+        //   ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 15),
+            child: Icon(
+              FontAwesomeIcons.bagShopping,
+              color: kprimaryColor,
+            ),
+          )
+        ],
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: kprimaryColor),
+      ),
+      drawer: CustomDrawer(),
+      body: screens[selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: kprimaryColor,
+        unselectedItemColor: ktertiaryColor,
+        iconSize: 20,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.house),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.heart), label: 'Like'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.bagShopping), label: 'Profile'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.commentDots), label: 'Chat'),
+        ],
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      ),
+    );
+    // CustomNavbar(ontap: (selectedIndex ) {
+    //   setState(() {
+    //     selectedIndex = index;
+    //   });
+    //   },
+    // selectedIndex: selectedIndex,));
   }
 }

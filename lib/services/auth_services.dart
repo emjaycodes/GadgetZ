@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oga_bassey/models/user_model.dart';
 
 class AuthService {
   final fb_auth.FirebaseAuth _firebaseAuth = fb_auth.FirebaseAuth.instance;
 
-  Future<UserModel?> getCurrentUser() async {
+  UserModel? getCurrentUser() {
     final fb_auth.User? firebaseUser = _firebaseAuth.currentUser;
 
     if (firebaseUser != null) {
