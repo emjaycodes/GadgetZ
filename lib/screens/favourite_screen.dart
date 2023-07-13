@@ -6,6 +6,13 @@ class FavouriteScreen extends StatelessWidget {
   static String id = 'favourite_screen';
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('FAVOURITE'),
+      // ),
+      body: const Center(
+        child: Text("YOU HAVEN'T LIKED ANY ITEM" ),
+      ),
+    );
   }
 }

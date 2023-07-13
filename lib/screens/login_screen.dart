@@ -8,6 +8,7 @@ import 'package:oga_bassey/components/social_media_card.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
+import 'package:oga_bassey/screens/home/home_screen.dart';
 import 'package:oga_bassey/screens/signup_screen.dart';
 import 'package:oga_bassey/services/auth_services.dart';
 
@@ -102,14 +103,25 @@ class _LoginScreenState extends State<LoginScreen> {
               kbigSizedbox,
 
               // login up buttun
-              CustomButtom(
-                  buttonName: 'Login',
-                  buttonColor: kdisabledButtonColor,
-                  textStyle: ksignupbuttonTextStyle(),
-                  onPressed: () {
-                    BlocProvider.of<AuthenticationBloc>(context).add(SignInUser(
-                        emailController.text, passwordController.text));
-                  }),
+              BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                listener: (context, state) {
+                  if (state is AuthenticationSuccessState) {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, HomeScreen.id, (route) => false);
+                    }
+                },
+                builder: (context, state) {
+                  return CustomButtom(
+                      buttonName: 'Login',
+                      buttonColor: kdisabledButtonColor,
+                      textStyle: ksignupbuttonTextStyle(),
+                      onPressed: () {
+                        BlocProvider.of<AuthenticationBloc>(context).add(
+                            SignInUser(
+                                emailController.text, passwordController.text));
+                      });
+                },
+              ),
 
               kbigSizedbox,
 
