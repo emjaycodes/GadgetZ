@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
-import 'package:oga_bassey/screens/favourite_screen.dart';
+import 'package:oga_bassey/screens/product_details_screen.dart';
 import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
 
 import '../../../blocs/product_bloc/product_bloc.dart';
@@ -14,7 +15,6 @@ import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
 
 class HomeBody extends StatefulWidget {
-  
   const HomeBody({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +22,6 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  
   bool istapped = true;
 
   void toggleColour() {
@@ -236,11 +235,17 @@ class _HomeBodyState extends State<HomeBody> {
                       productPrice: product.price,
                       productbrand: product.brand,
                       // productImage: product.image,
+                      ontap: () {
+                        BlocProvider.of<ProductBloc>(context)
+                            .add(NavigateToProductDetailsEvent(product));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsScreen(product: product)));
+                      },
                     );
                   },
                 );
               } else if (state is ProductErrorState) {
                 print(state.errorMessage.toString());
+                
                 return Text('Error: ${state.errorMessage.toString()}');
               } else {
                 return Center(child: CircularProgressIndicator());

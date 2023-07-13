@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oga_bassey/components/bottom_navbar.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/screens/cart_screen.dart';
 import 'package:oga_bassey/screens/home/components/home_screen_body.dart';
 import '../../components/drawer_widget.dart';
 import '../favourite_screen.dart';
@@ -24,9 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late int selectedIndex = 0;
 
+  // SCREEN LIST
   final List screens = [
     HomeBody(),
     FavouriteScreen(),
+    CartScreen(),
   ]; 
 
   @override
@@ -76,8 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(FontAwesomeIcons.heart), label: 'Like'),
           BottomNavigationBarItem(
               icon: Icon(FontAwesomeIcons.bagShopping), label: 'Profile'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.commentDots), label: 'Chat'),
         ],
         onTap: (index) {
           setState(() {
