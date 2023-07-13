@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
+import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/auth/auth_flow_screen.dart';
+import 'package:oga_bassey/screens/cart_screen.dart';
 import 'package:oga_bassey/screens/favourite_screen.dart';
 import 'package:oga_bassey/screens/forgot_password/components/email_notication.dart';
 import 'package:oga_bassey/screens/forgot_password/forgot_password.dart';
@@ -35,6 +37,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => AuthenticationBloc(),
+        ),
+          BlocProvider(
+          create: (context) => CartBloc(),
         )
       ],
       child: const MyApp(),
@@ -79,6 +84,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => const LoginScreen(),
         SignupBody.id: (context) => const SignupBody(),
         FavouriteScreen.id:(context) => const FavouriteScreen(),
+        CartScreen.id: (context)=>  CartScreen(),
       },
     );
   }
