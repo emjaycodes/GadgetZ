@@ -17,15 +17,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
     on<AddProductEvent>(_handleAddProductEvent);
 
-    // void getProduct() {
-    //   _repository.getProducts().listen((products) {
-    //     _productController.add(products);
-    //   });
-    // }
-
-    // Future<void> saveProduct(Product product) {
-    //   return _repository.saveProduct(product);
-    // }
+    on<NavigateToProductDetailsEvent>((event, emit) {
+      final Product selectedProduct = event.product;
+      emit(ProductInitialState());
+      emit(ProductDetailsState(selectedProduct));
+    });
   }
 
   final ProductRepository _repository = ProductRepository();
@@ -77,6 +73,4 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       },
     );
   }
-
-  void getProduct() {}
 }

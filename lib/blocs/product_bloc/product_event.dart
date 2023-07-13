@@ -15,3 +15,10 @@ class AddProductEvent extends ProductEvent {
   // Define the product getter
   Product get product => _product;
 }
+
+
+class NavigateToProductDetailsEvent extends ProductEvent{
+  final Product product;
+
+   NavigateToProductDetailsEvent(this.product);
+}

@@ -28,3 +28,13 @@ class ProductErrorState extends ProductState {
   @override
   List<Object?> get props => [errorMessage];
 }
+
+class ProductDetailsState extends ProductState{
+  final Product _productDetails;
+
+  const ProductDetailsState(this._productDetails);
+
+
+  @override
+  List<Object> get props => [_productDetails];
+}
