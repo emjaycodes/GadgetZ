@@ -16,4 +16,36 @@ class ProductRepository {
       }).toList();
     });
   }
+
+  final List<Product> _cartList = [];
+
+  get cartList => _cartList;
+
+  void addToCart(Product product) {
+    _cartList.add(product);
+  }
+
+  void removeFromCart(Product product) {
+    _cartList.remove(product);
+  }
+
+  double calculateTotalPrice() {
+    double totalPrice = 0.0;
+    for (Product product in _cartList) {
+      totalPrice += product.price;
+    }
+    return totalPrice;
+  }
+
+  final List<Product> _likedProduct = [];
+
+  get likedProduct => _likedProduct;
+
+  void addLikedProduct(Product product) {
+    _likedProduct.add(product);
+  }
+
+  void deleteLikedProduct(Product product) {
+    _likedProduct.remove(product);
+  }
 }
