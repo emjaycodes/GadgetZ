@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
+import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 
@@ -32,19 +33,24 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+          kbigSizedbox,
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   product.name,
+                  overflow: TextOverflow.clip,
                   style: const TextStyle(
+                    color: kprimaryColor,
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '\$ ${product.price}',
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(
+                    color: kprimaryColor,
+                    fontSize: 25),
                 ),
               ],
             ),
@@ -52,7 +58,21 @@ class ProductDetailsScreen extends StatelessWidget {
           kbigSizedbox,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal:20.0),
-            child: const Text('Description'),
+            child: const Text('Description',
+          style: TextStyle(
+            fontSize: 25
+          ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SizedBox(
+              height: 120,
+              width: 600,
+              child: Text(
+                product.description,
+                ),
+            ),
           ),
           Spacer(),
           Padding(
@@ -60,17 +80,20 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 3,
-                      color: kprimaryColor,
+                InkWell(
+                  onTap: (){BlocProvider.of<LikedProductBloc>(context).add(LikeProductEvent(product));},
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 3,
+                        color: kprimaryColor,
+                      ),
+                      borderRadius: BorderRadius.circular(50)
                     ),
-                    borderRadius: BorderRadius.circular(50)
+                    child: const Icon(Icons.favorite, color: kprimaryColor,) ,
                   ),
-                  child: const Icon(Icons.favorite, color: kprimaryColor,) ,
                 ),
                 InkWell(
                   onTap: () {
@@ -78,7 +101,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   },
                   child: Container(
                     height: 60,
-                    width: 200,
+                    width: 300,
                     decoration: BoxDecoration(
                       color: kprimaryColor,
                       borderRadius: BorderRadius.circular(30),

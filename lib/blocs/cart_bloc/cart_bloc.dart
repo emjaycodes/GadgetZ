@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import '../../models/product.dart';
 import '../../repositories/product_repository.dart';
@@ -19,7 +16,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<CartEvent>((event, emit) {});
     on<AddToCartEvent>(_addToCartEvent);
     on<RemoveCartItemEvent>(_removeCartItemEvent);
-
     on<CartloadedEvent>((event, emit) {
       emit(CartloadedState(_repository.cartList));
     });
@@ -38,3 +34,11 @@ void _removeCartItemEvent(
   emit(CartInitialState());
   _repository.removeFromCart(event._product);
 }
+
+void _IncreaseCartItemQuantity(
+    IncreaseCartItemQuantityEvent event, Emitter<CartState> emit) {
+
+}
+
+void _IecreaseCartItemQuantity(
+    DecreaseCartItemQuantityEvent event, Emitter<CartState> emit) {}
