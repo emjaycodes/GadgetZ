@@ -1,15 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/constants.dart';
-
 import '../blocs/cart_bloc/cart_bloc.dart';
+import '../components/cart_icon_button.dart';
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+  const CartScreen({
+    super.key,
+  });
 
   static String id = 'cart_screen';
-
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
@@ -28,7 +28,7 @@ class _CartScreenState extends State<CartScreen> {
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 final cartItem = cartItems[index];
-
+                
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -50,21 +50,32 @@ class _CartScreenState extends State<CartScreen> {
                           children: [
                             Text(cartItem.name),
                             Text('Price: ${cartItem.price}'),
-                            const Row(
+                            Row(
                               children: [
-                                CartButton(
-                                  cartIcon: Icon(Icons.add),
+                                CartIconButton(
+                                  cartIcon: const Icon(Icons.remove),
+                                  ontap: () {
+                                    BlocProvider.of<CartBloc>(context).add(
+                                          DecreaseCartItemQuantityEvent(
+                                              cartItem));
+                                  },
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
-                                Text('1'),
-                                SizedBox(
+                                Text(cartItem.quantity.toString()),
+                                const SizedBox(
                                   width: 10,
                                 ),
-                                CartButton(
-                                  cartIcon: Icon(Icons.remove),
-                                )
+                                CartIconButton(
+                                    cartIcon: const Icon(Icons.add),
+                                    ontap: () {
+                                      BlocProvider.of<CartBloc>(context).add(
+                                        IncreaseCartItemQuantityEvent(cartItem));
+                                    // cartItem.quantity++;
+                                    print('increased');
+                                    print(cartItem.quantity);
+                                    })
                               ],
                             )
                           ],
@@ -85,25 +96,5 @@ class _CartScreenState extends State<CartScreen> {
         }
       },
     ));
-  }
-}
-
-class CartButton extends StatelessWidget {
-  const CartButton({
-    super.key,
-    required this.cartIcon,
-  });
-
-  final Icon cartIcon;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 25,
-        width: 25,
-        decoration: BoxDecoration(
-            color: ktertiaryColor,
-            // shape: BoxShape.circle
-            borderRadius: BorderRadius.circular(20)),
-        child: cartIcon);
   }
 }

@@ -4,7 +4,7 @@ class Product {
   final String brand;
   // final String image;
   final String description;
-  final int quantity;
+  int quantity;
 
   Product(
     this.name,

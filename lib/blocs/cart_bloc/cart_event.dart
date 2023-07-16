@@ -35,11 +35,11 @@ class CartloadedEvent extends CartEvent {
 class DecreaseCartItemQuantityEvent extends CartEvent {
   final Product product;
 
-  DecreaseCartItemQuantityEvent(this.product);
+  const DecreaseCartItemQuantityEvent(this.product);
 }
 
 class IncreaseCartItemQuantityEvent extends CartEvent {
   final Product product;
 
-  IncreaseCartItemQuantityEvent(this.product);
+  const IncreaseCartItemQuantityEvent(this.product);
 }

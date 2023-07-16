@@ -48,4 +48,11 @@ class ProductRepository {
   void deleteLikedProduct(Product product) {
     _likedProduct.remove(product);
   }
+  
+   // Update the cart item in the repository
+  void updateCartItem(int index, Product updatedProduct) {
+    if (index >= 0 && index < cartList.length) {
+      cartList[index] = updatedProduct;
+    }
+  }
 }
