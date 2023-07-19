@@ -28,42 +28,68 @@ class _CartScreenState extends State<CartScreen> {
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 final cartItem = cartItems[index];
-                
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 120,
                     width: 200,
-                    color: Colors.amber,
+                    decoration: BoxDecoration(
+                        color: kprimaryColor,
+                        borderRadius: BorderRadius.circular(20)),
                     child: Row(
                       children: [
-                        Container(
-                          height: 100,
-                          width: 200,
-                          color: kprimaryColor,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                           
+                            height: 150,
+                            width: 200,
+                            decoration: BoxDecoration(
+                                color: ktertiaryColor,
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
                         ),
                         const SizedBox(
-                          width: 40,
+                          width: 14,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(cartItem.name),
-                            Text('Price: ${cartItem.price}'),
+                            Text(
+                              cartItem.name,
+                              style: const TextStyle(
+                                color: ktertiaryColor,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              cartItem.price.toString(),
+                              style: const TextStyle(
+                                color: ktertiaryColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             Row(
                               children: [
                                 CartIconButton(
                                   cartIcon: const Icon(Icons.remove),
                                   ontap: () {
                                     BlocProvider.of<CartBloc>(context).add(
-                                          DecreaseCartItemQuantityEvent(
-                                              cartItem));
+                                        DecreaseCartItemQuantityEvent(
+                                            cartItem));
                                   },
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text(cartItem.quantity.toString()),
+                                Text(
+                                  cartItem.quantity.toString(),
+                                  style: const TextStyle(
+                                    color: ktertiaryColor,
+                                  ),
+                                ),
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -71,10 +97,11 @@ class _CartScreenState extends State<CartScreen> {
                                     cartIcon: const Icon(Icons.add),
                                     ontap: () {
                                       BlocProvider.of<CartBloc>(context).add(
-                                        IncreaseCartItemQuantityEvent(cartItem));
-                                    // cartItem.quantity++;
-                                    print('increased');
-                                    print(cartItem.quantity);
+                                          IncreaseCartItemQuantityEvent(
+                                              cartItem));
+                                      // cartItem.quantity++;
+                                      print('increased');
+                                      print(cartItem.quantity);
                                     })
                               ],
                             )
@@ -84,10 +111,6 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 );
-
-                // return ListTile(
-                //     title: Text(cartItem.name),
-                //     subtitle: Text('Price: ${cartItem.price}'));
               });
         } else {
           return const Center(

@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeBody(),
     FavouriteScreen(),
     CartScreen(),
-  ]; 
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
         //     ),
         //   onPressed: (){},
         //   ),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 15),
-            child: Icon(
-              FontAwesomeIcons.bagShopping,
-              color: kprimaryColor,
-            ),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, CartScreen.id);
+                },
+                icon: Icon(
+                  FontAwesomeIcons.bagShopping,
+                  color: kprimaryColor,
+                )),
           )
         ],
         backgroundColor: Colors.white,

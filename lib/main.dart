@@ -17,7 +17,6 @@ import 'package:oga_bassey/screens/new_password/new_password.dart';
 import 'package:oga_bassey/screens/product_screen/product_screen.dart';
 import 'package:oga_bassey/screens/signup_screen.dart';
 import 'package:oga_bassey/screens/splash/IntroScreen.dart';
-
 import 'blocs/product_bloc/product_bloc.dart';
 import 'firebase_options.dart';
 
@@ -26,6 +25,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   runApp(
     MultiBlocProvider(
       // NOTE: The Bloc must be created once and accessed from anywhere in
@@ -82,13 +82,13 @@ class MyApp extends StatelessWidget {
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
         EmailNotifierScreen.id: (context) => const EmailNotifierScreen(),
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
         ProductScreen.id: (context) => const ProductScreen(),
         AuthenticationFlowScreen.id: (context) => const AuthenticationFlowScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         SignupBody.id: (context) => const SignupBody(),
         FavouriteScreen.id:(context) => const FavouriteScreen(),
-        CartScreen.id: (context)=>  CartScreen(),
+        CartScreen.id: (context)=>  const CartScreen(),
       },
     );
   }
