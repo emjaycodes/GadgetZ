@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
-
 import '../constants.dart';
 
 class FavouriteScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class FavouriteScreen extends StatelessWidget {
           if (state is LikeProductLoadedState) {
             final likedItems = state.likedProductList;
             if (likedItems.isEmpty) {
-              return const Text("YOU HAVE'NT ADDED ANY ITEM TO CART");
+              return const Text("YOU HAVE'NT LIKED ANY ITEM ");
             }
             return GridView.builder(
                 itemCount: likedItems.length,
@@ -63,12 +62,9 @@ class FavouriteScreen extends StatelessWidget {
                     ),
                   );
                 }));
-            // return ListTile(
-            //     title: Text(likeItem.name),
-            //     subtitle: Text('Price: ${likeItem.price}'));
           } else {
             return const Center(
-              child: Text("YOU HAVE'NT ADDED ANY ITEM TO CART"),
+              child: Text(" YOU HAVE'NT LIKED ANY ITEM "),
             );
           }
         },

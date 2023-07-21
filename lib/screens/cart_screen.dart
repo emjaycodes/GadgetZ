@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/constants.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
 import '../components/cart_icon_button.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({
@@ -111,6 +112,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 );
+                
               });
         } else {
           return const Center(
