@@ -12,13 +12,14 @@ class LikedProductBloc extends Bloc<LikedProductEvent, LikedProductState> {
   LikedProductBloc() : super(LikeProductInitialState()) {
     on<LikedProductEvent>((event, emit) {});
     on<LikeProductEvent>((event, emit) {
-       likedProductList = _repository.likedProduct;
+      likedProductList = _repository.likedProduct;
+      event.isLiked = true;
       likedProductList.add(event.product);
       emit(LikeProductLoadedState(likedProductList));
     });
     on<UnlikeProduct>((event, emit) {
       emit(LikeProductInitialState());
-      _repository.removeFromCart(event.product);
+      _repository.deleteLikedProduct(event.product);
     });
   }
 }

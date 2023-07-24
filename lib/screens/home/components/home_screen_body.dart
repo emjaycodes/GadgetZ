@@ -234,7 +234,7 @@ class _HomeBodyState extends State<HomeBody> {
                       productName: product.name,
                       productPrice: product.price,
                       productbrand: product.brand,
-                      // productImage: product.image,
+                      productImage: product.image,
                       ontap: () {
                         BlocProvider.of<ProductBloc>(context)
                             .add(NavigateToProductDetailsEvent(product));

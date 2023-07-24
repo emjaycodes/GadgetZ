@@ -5,9 +5,9 @@ class ProductRepository {
   final CollectionReference productsCollection =
       FirebaseFirestore.instance.collection('products');
 
-  Future<void> saveProduct(Product product) {
-    return productsCollection.doc().set(product.toMap());
-  }
+  // Future<void> saveProduct(Product product) {
+  //   return productsCollection.doc().set(product.toMap());
+  // }
 
   Stream<List<Product>> getProducts() {
     return productsCollection.snapshots().map((snapshot) {
@@ -15,6 +15,12 @@ class ProductRepository {
         return Product.fromMap(doc.data() as Map<String, dynamic>);
       }).toList();
     });
+  }
+
+    Future<void> updateProductLikedStatus(Product product) {
+    return productsCollection
+        .doc(product.id.toString()) // Assuming each product has a unique 'id' in Firebase
+        .update({'liked': product.liked});
   }
 
   final List<Product> _cartList = [];
@@ -55,4 +61,6 @@ class ProductRepository {
       cartList[index] = updatedProduct;
     }
   }
+
+
 }

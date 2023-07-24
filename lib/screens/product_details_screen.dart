@@ -6,6 +6,7 @@ import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
+import 'package:oga_bassey/size_cofig.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
@@ -14,6 +15,8 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // bool isliked = false;
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Details'),
@@ -26,10 +29,14 @@ class ProductDetailsScreen extends StatelessWidget {
           ksmallSizedbox,
           Center(
             child: Container(
-              height: 300,
-              width: 390,
-              decoration: const BoxDecoration(
-                color: kprimaryColor,
+              height: SizeConfig.screenHeight / 2.5,
+              width: SizeConfig.screenWidth * 0.9,
+              decoration: BoxDecoration(
+                  color: ktertiaryColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Image.network(
+                product.image,
+                // height: 100.0,width: 50.0,
               ),
             ),
           ),
@@ -43,25 +50,23 @@ class ProductDetailsScreen extends StatelessWidget {
                   product.name,
                   overflow: TextOverflow.clip,
                   style: const TextStyle(
-                    color: kprimaryColor,
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                      color: kprimaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '\$ ${product.price}',
-                  style: const TextStyle(
-                    color: kprimaryColor,
-                    fontSize: 25),
+                  style: const TextStyle(color: kprimaryColor, fontSize: 25),
                 ),
               ],
             ),
           ),
           kbigSizedbox,
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20.0),
-            child: const Text('Description',
-          style: TextStyle(
-            fontSize: 25
-          ),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: const Text(
+              'Description',
+              style: TextStyle(fontSize: 25),
             ),
           ),
           Padding(
@@ -71,7 +76,7 @@ class ProductDetailsScreen extends StatelessWidget {
               width: 600,
               child: Text(
                 product.description,
-                ),
+              ),
             ),
           ),
           Spacer(),
@@ -81,34 +86,46 @@ class ProductDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: (){BlocProvider.of<LikedProductBloc>(context).add(LikeProductEvent(product));},
+                  onTap: () {
+                    BlocProvider.of<LikedProductBloc>(context).add(
+                      LikeProductEvent(product, product.liked),
+                    );
+                  },
                   child: Container(
                     height: 40,
                     width: 40,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 3,
-                        color: kprimaryColor,
-                      ),
-                      borderRadius: BorderRadius.circular(50)
-                    ),
-                    child: const Icon(Icons.favorite, color: kprimaryColor,) ,
+                        border: Border.all(
+                          width: 3,
+                          color: kprimaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(50)),
+                    child: product.liked == true
+                        ? const Icon(Icons
+                            .favorite) // Icon to show when product.liked is true
+                        : const Icon(Icons.favorite_border),
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    BlocProvider.of<CartBloc>(context).add(AddToCartEvent(product));
+                    BlocProvider.of<CartBloc>(context)
+                        .add(AddToCartEvent(product));
                   },
                   child: Container(
-                    height: 60,
-                    width: 300,
+                    height: SizeConfig.screenHeight / 16,
+                    width: SizeConfig.screenWidth * 0.7,
                     decoration: BoxDecoration(
                       color: kprimaryColor,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    child: const Center(child: Text('Add to cart', style: TextStyle(
-                      color: ktertiaryColor,
-                    ),),),
+                    child: const Center(
+                      child: Text(
+                        'Add to cart',
+                        style: TextStyle(
+                          color: ktertiaryColor,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],

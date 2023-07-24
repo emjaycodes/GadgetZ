@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/size_cofig.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
 import '../components/cart_icon_button.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -18,6 +19,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(body: BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
         if (state is CartloadedState) {
@@ -33,8 +35,8 @@ class _CartScreenState extends State<CartScreen> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 120,
-                    width: 200,
+                    height: SizeConfig.screenHeight * 0.2,
+                    width:  7,
                     decoration: BoxDecoration(
                         color: kprimaryColor,
                         borderRadius: BorderRadius.circular(20)),
@@ -43,16 +45,16 @@ class _CartScreenState extends State<CartScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                           
-                            height: 150,
-                            width: 200,
+                            height: SizeConfig.screenHeight * 0.9,
+                            width: SizeConfig.screenWidth * 0.4,
                             decoration: BoxDecoration(
                                 color: ktertiaryColor,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.network(cartItem.image),
                           ),
                         ),
                         const SizedBox(
-                          width: 14,
+                          width: 3,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,6 +64,7 @@ class _CartScreenState extends State<CartScreen> {
                               style: const TextStyle(
                                 color: ktertiaryColor,
                                 fontSize: 18,
+                                overflow: TextOverflow.ellipsis
                               ),
                             ),
                             Text(

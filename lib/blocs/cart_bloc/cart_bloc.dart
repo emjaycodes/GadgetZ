@@ -21,8 +21,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
     on<IncreaseCartItemQuantityEvent>(((event, emit) {
       final product = event.product;
-      final updatedProduct = Product(product.name, product.price, product.brand,
-          product.description, product.quantity + 1);
+      final updatedProduct = Product(
+        product.id,
+        product.name,
+        product.price,
+        product.brand,
+        product.image,
+        product.description,
+        product.quantity + 1,
+        product.liked,
+      );
       product.quantity++;
       emit(CartloadedState(_repository.cartList));
     }));

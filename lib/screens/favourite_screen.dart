@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
 import '../constants.dart';
+import '../../../components/custom_stack.dart';
+import '../../../size_cofig.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -10,6 +12,8 @@ class FavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SizeConfig().init(context);
     return Scaffold(
       body: BlocBuilder<LikedProductBloc, LikedProductState>(
         builder: (context, state) {
@@ -22,7 +26,7 @@ class FavouriteScreen extends StatelessWidget {
                 itemCount: likedItems.length,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 3.5,
+                  childAspectRatio: 2.5 / 3.7,
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: ((context, index) {
@@ -36,14 +40,18 @@ class FavouriteScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            height: 150,
-                            width: 150,
-                            decoration: const BoxDecoration(
-                              color: ktertiaryColor
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: SizeConfig.screenHeight * 0.2,
+                              width: SizeConfig.screenWidth * 0.4,
+                              decoration:  BoxDecoration(
+                                color: ktertiaryColor,
+                                borderRadius: BorderRadius.circular(15)
+                              ),
+                              child: Image.network(likeItem.image),
                             ),
                           ),
-                          ksmallSizedbox,
                           Text(likeItem.name,
                           style: const TextStyle(
                             color: ktertiaryColor,

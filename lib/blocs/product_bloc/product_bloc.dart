@@ -15,7 +15,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
     on<FetchProductsEvent>(_handleFetchProductEvent);
 
-    on<AddProductEvent>(_handleAddProductEvent);
+    // on<AddProductEvent>(_handleAddProductEvent);
 
     on<NavigateToProductDetailsEvent>((event, emit) {
       final Product selectedProduct = event.product;
@@ -47,16 +47,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     }
   }
 
-  void _handleAddProductEvent(
-      AddProductEvent event, Emitter<ProductState> emit) async {
-    emit(ProductLoadingState());
-    await _repository.saveProduct(event.product).then(
-      (_) {
-        // emit(ProductAddedState());
-      },
-      onError: (error) {
-        emit(ProductErrorState(error.toString()));
-      },
-    );
-  }
+  // void _handleAddProductEvent(
+  //     AddProductEvent event, Emitter<ProductState> emit) async {
+  //   emit(ProductLoadingState());
+  //   await _repository.saveProduct(event.product).then(
+  //     (_) {
+  //       // emit(ProductAddedState());
+  //     },
+  //     onError: (error) {
+  //       emit(ProductErrorState(error.toString()));
+  //     },
+  //   );
+  // }
 }

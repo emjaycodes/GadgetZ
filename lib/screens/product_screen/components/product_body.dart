@@ -103,7 +103,7 @@ class _ProductBodyState extends State<ProductBody> {
                     productName: product.name,
                     productPrice: product.price,
                     productbrand: product.brand,
-                    // productImage: product.image,
+                    productImage: product.image,
                   );
                 },
               );

@@ -7,7 +7,7 @@ class ProductContainer extends StatelessWidget {
   final String productName;
   final String productbrand;
   final double productPrice;
-  // final String productImage;
+  final String productImage;
   final void Function()? ontap;
 
   const ProductContainer({
@@ -16,7 +16,7 @@ class ProductContainer extends StatelessWidget {
     required this.productbrand,
     required this.productPrice, 
     this.ontap,
-    // required this.productImage,
+    required this.productImage,
   });
 
   @override
@@ -30,8 +30,8 @@ class ProductContainer extends StatelessWidget {
             color: ktertiaryColor, borderRadius: BorderRadius.circular(15)),
         child: Column(
           children: [
-            const SizedBox(
-              // child: Image.asset(productImage)
+             SizedBox(
+              child: Image.network(productImage)
               ),
             Container(
               height: 110,
