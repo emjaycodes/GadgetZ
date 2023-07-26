@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
+import 'package:oga_bassey/components/shimmer_loading.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/screens/product_details_screen.dart';
@@ -248,7 +249,7 @@ class _HomeBodyState extends State<HomeBody> {
                 
                 return Text('Error: ${state.errorMessage.toString()}');
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Center(child: ShimmerList());
               }
             },
           ),

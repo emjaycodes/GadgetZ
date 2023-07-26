@@ -106,32 +106,46 @@ class ProductDetailsScreen extends StatelessWidget {
                         : const Icon(Icons.favorite_border),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    BlocProvider.of<CartBloc>(context)
-                        .add(AddToCartEvent(product));
-                  },
-                  child: Container(
-                    height: SizeConfig.screenHeight / 16,
-                    width: SizeConfig.screenWidth * 0.7,
-                    decoration: BoxDecoration(
-                      color: kprimaryColor,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Add to cart',
-                        style: TextStyle(
-                          color: ktertiaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                AddToCartButton(product: product),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton({
+    super.key,
+    required this.product,
+  });
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        BlocProvider.of<CartBloc>(context)
+            .add(AddToCartEvent(product));
+      },
+      child: Container(
+        height: SizeConfig.screenHeight / 16,
+        width: SizeConfig.screenWidth * 0.7,
+        decoration: BoxDecoration(
+          color: kprimaryColor,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: const Center(
+          child: Text(
+            'Add to cart',
+            style: TextStyle(
+              color: ktertiaryColor,
+            ),
+          ),
+        ),
       ),
     );
   }
