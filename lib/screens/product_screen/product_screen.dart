@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:oga_bassey/components/bottom_navbar.dart';
 import 'package:oga_bassey/components/drawer_widget.dart';
 import 'package:oga_bassey/constants.dart';
 

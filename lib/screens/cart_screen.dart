@@ -5,7 +5,6 @@ import 'package:oga_bassey/repositories/product_repository.dart';
 import 'package:oga_bassey/size_cofig.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
 import '../components/cart_icon_button.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({
@@ -135,7 +134,7 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Text(
               'Total: ${_repository.calculateTotalPrice().toString()}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: kprimaryColor

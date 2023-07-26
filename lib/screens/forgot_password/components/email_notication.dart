@@ -34,7 +34,7 @@ class _EmailNotifierScreenState extends State<EmailNotifierScreen> {
             onPressed: () {
               Navigator.pop(
                 context,
-                MaterialPageRoute(builder: (context) =>  LoginScreen()),
+                MaterialPageRoute(builder: (context) =>  const LoginScreen()),
               );
             },
             icon: const Icon(

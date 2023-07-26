@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/components/shimmer_loading.dart';

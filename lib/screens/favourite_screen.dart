@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
 import '../constants.dart';
-import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
 
 class FavouriteScreen extends StatelessWidget {

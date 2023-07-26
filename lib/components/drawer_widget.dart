@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
@@ -16,12 +15,12 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: kprimaryColor,
             ),
             child: Row(
-              children: const [
+              children: [
                 Text(
                   'G',
                   style: TextStyle(
