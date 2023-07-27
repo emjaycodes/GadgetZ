@@ -14,7 +14,6 @@ import 'package:oga_bassey/services/auth_services.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
-  // final VoidCallback showSigupPage;
 
   const LoginScreen({
     Key? key,

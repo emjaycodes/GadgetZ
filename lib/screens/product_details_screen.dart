@@ -8,14 +8,19 @@ import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/size_cofig.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   final Product product;
 
   const ProductDetailsScreen({super.key, required this.product});
 
   @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
   Widget build(BuildContext context) {
-    // bool isliked = false;
+    bool isliked = false;
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +40,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   color: ktertiaryColor,
                   borderRadius: BorderRadius.circular(20)),
               child: Image.network(
-                product.image,
+                widget.product.image,
                 // height: 100.0,width: 50.0,
               ),
             ),
@@ -47,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  product.name,
+                  widget.product.name,
                   overflow: TextOverflow.clip,
                   style: const TextStyle(
                       color: kprimaryColor,
@@ -55,7 +60,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '\$ ${product.price}',
+                  '\$ ${widget.product.price}',
                   style: const TextStyle(color: kprimaryColor, fontSize: 25),
                 ),
               ],
@@ -75,7 +80,7 @@ class ProductDetailsScreen extends StatelessWidget {
               height: 120,
               width: 600,
               child: Text(
-                product.description,
+                widget.product.description,
               ),
             ),
           ),
@@ -85,28 +90,36 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: () {
-                    BlocProvider.of<LikedProductBloc>(context).add(
-                      LikeProductEvent(product, product.liked),
-                    );
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 3,
-                          color: kprimaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: product.liked == true
-                        ? const Icon(Icons
-                            .favorite) // Icon to show when product.liked is true
-                        : const Icon(Icons.favorite_border),
-                  ),
+                BlocBuilder<LikedProductBloc, LikedProductState>(
+                  builder: (BuildContext context, state) { 
+                    return InkWell(
+                    onTap: () {
+                      BlocProvider.of<LikedProductBloc>(context).add(
+                        LikeProductEvent(widget.product),
+                      );
+                      setState(() {
+                        isliked = !isliked; 
+                      });
+                      print(widget.product.liked);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 3,
+                            color: kprimaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: widget.product.liked == true
+                          ? const Icon(Icons
+                              .favorite) // Icon to show when product.liked is true
+                          : const Icon(Icons.favorite_border),
+                    ),
+                  );
+                   },
                 ),
-                AddToCartButton(product: product),
+                AddToCartButton(product: widget.product),
               ],
             ),
           ),

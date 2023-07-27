@@ -9,9 +9,9 @@ abstract class LikedProductEvent extends Equatable {
 
 class LikeProductEvent extends LikedProductEvent {
   final Product product;
-   bool isLiked = false;
+   
 
-    LikeProductEvent(this.product, this.isLiked);
+    LikeProductEvent(this.product);
 
    @override
   List<Object> get props => [product];

@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Oga Bassey',
+      title: 'GADGETZ',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: kprimaryColor,

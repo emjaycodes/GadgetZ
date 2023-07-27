@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/repositories/product_repository.dart';
 import 'package:oga_bassey/size_cofig.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
@@ -33,7 +34,53 @@ class _CartScreenState extends State<CartScreen> {
                   return const Center(
                       child: Text("YOU HAVEN'T ADDED ANY ITEM TO CART"));
                 }
-                return ListView.builder(
+                return buildCartList(cartItems);
+              } else {
+                return const Center(
+                  child: Text("YOU HAVEN'T ADDED ANY ITEM TO CART"),
+                );
+              }
+            },
+          ),
+        ), 
+        if (cartList.isEmpty) const SizedBox() else Column(
+          children: [
+            Text(
+              'Total: ${_repository.calculateTotalPrice().toString()}',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: kprimaryColor
+              ),
+              ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: SizeConfig.screenHeight / 16,
+                width: SizeConfig.screenWidth * 0.7,
+                decoration: BoxDecoration(
+                  color: kprimaryColor,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Checkout',
+                    style: TextStyle(
+                      color: ktertiaryColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ));
+  }
+}
+
+Widget buildCartList(List<Product> cartItems) {
+  return ListView.builder(
                     itemCount: cartItems.length,
                     itemBuilder: (context, index) {
                       final cartItem = cartItems[index];
@@ -89,6 +136,8 @@ class _CartScreenState extends State<CartScreen> {
                                                 .add(
                                                     DecreaseCartItemQuantityEvent(
                                                         cartItem));
+                                              print('decrease');
+                                              print(cartItem.quantity);
                                           },
                                         ),
                                         const SizedBox(
@@ -122,46 +171,4 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       );
                     });
-              } else {
-                return const Center(
-                  child: Text("YOU HAVEN'T ADDED ANY ITEM TO CART"),
-                );
-              }
-            },
-          ),
-        ), 
-        if (cartList.isEmpty) const SizedBox() else Column(
-          children: [
-            Text(
-              'Total: ${_repository.calculateTotalPrice().toString()}',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: kprimaryColor
-              ),
-              ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: SizeConfig.screenHeight / 16,
-                width: SizeConfig.screenWidth * 0.7,
-                decoration: BoxDecoration(
-                  color: kprimaryColor,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Checkout',
-                    style: TextStyle(
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ));
-  }
 }
