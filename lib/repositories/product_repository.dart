@@ -17,11 +17,11 @@ class ProductRepository {
     });
   }
 
-    Future<void> updateProductLikedStatus(Product product) {
-    return productsCollection
-        .doc(product.id.toString()) // Assuming each product has a unique 'id' in Firebase
-        .update({'liked': product.liked});
-  }
+  //   Future<void> updateProductLikedStatus(Product product) {
+  //   return productsCollection
+  //       .doc(product.id.toString()) // Assuming each product has a unique 'id' in Firebase
+  //       .update({'liked': product.liked});
+  // }
 
   final List<Product> _cartList = [];
 
