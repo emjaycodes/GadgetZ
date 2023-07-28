@@ -38,16 +38,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           _repository.removeFromCart(event.product);
           emit(CartloadedState(_repository.cartList));
       }
-  //  switch (event.product.quantity) {
-  //     case 1:
-  //       event.product.quantity--;
-  //       emit(CartloadedState(_repository.cartList));
-  //       break;
-  //     case 0:
-  //       _repository.removeFromCart(event.product);
-  //       emit(CartloadedState(_repository.cartList));
-  //       break;
-  //   }
     }));
   }
 
@@ -66,9 +56,3 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 }
 
 
-
-// void _IncreaseCartItemQuantity(
-//     IncreaseCartItemQuantityEvent event, Emitter<CartState> emit) {}
-
-// void _IecreaseCartItemQuantity(
-//     DecreaseCartItemQuantityEvent event, Emitter<CartState> emit) {}

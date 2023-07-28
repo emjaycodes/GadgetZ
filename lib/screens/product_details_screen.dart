@@ -96,7 +96,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     listener: (context, state) {
                       if (state is LikeProductLoadedState) {
                         // Show a snackbar when the product is liked
-                        showSnackbarMessage("Product has been liked!", context);
+                        showSnackbarMessage("Product has been liked!",  Icons.favorite, context,);
                       }
                     },
                     builder: (BuildContext context, state) {
@@ -106,6 +106,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             LikeProductEvent(widget.product),
                           );
                           print(widget.product.liked);
+                          setState(() {
+                            isliked =! isliked;
+                          });
                         },
                         child: Container(
                           height: 40,
@@ -149,7 +152,7 @@ class AddToCartButton extends StatelessWidget {
       listener: (context, state) {
         if (state is CartloadedState) {
           // Show a snackbar when the product is added to the cart
-          showSnackbarMessage("Product added to cart!", context);
+          showSnackbarMessage("Product added to cart!", Icons.check_circle, context);
         }
       },
       builder: (context, state) {

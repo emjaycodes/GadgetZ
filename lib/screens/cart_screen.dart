@@ -18,7 +18,14 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final ProductRepository _repository = ProductRepository();
+  double totalPrice = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    // print(ProductRepository().calculateTotalPrice());
+  
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -46,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
         if (cartList.isEmpty) const SizedBox() else Column(
           children: [
             Text(
-              'Total: ${_repository.calculateTotalPrice().toString()}',
+              'Total: \$${ProductRepository().calculateTotalPrice(cartList)}',  
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -54,7 +61,9 @@ class _CartScreenState extends State<CartScreen> {
               ),
               ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                print(ProductRepository().calculateTotalPrice(cartList).toString());
+              },
               child: Container(
                 height: SizeConfig.screenHeight / 16,
                 width: SizeConfig.screenWidth * 0.7,
@@ -79,8 +88,9 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
-Widget buildCartList(List<Product> cartItems) {
-  return ListView.builder(
+           Widget buildCartList(
+            List<Product> cartItems) {
+                    return ListView.builder(
                     itemCount: cartItems.length,
                     itemBuilder: (context, index) {
                       final cartItem = cartItems[index];
@@ -159,7 +169,6 @@ Widget buildCartList(List<Product> cartItems) {
                                                   .add(
                                                       IncreaseCartItemQuantityEvent(
                                                           cartItem));
-                                              // cartItem.quantity++;
                                               print('increased');
                                               print(cartItem.quantity);
                                             })
