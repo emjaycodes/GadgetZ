@@ -9,13 +9,8 @@ abstract class LikedProductState extends Equatable {
 
 class LikeProductInitialState extends LikedProductState {}
 
-class ProductlikedSuccess extends LikedProductState {
-  final Product product;
+class DislikedProductState extends LikedProductState {
 
-   const ProductlikedSuccess(this.product );
-
-  @override
-  List<Object> get props => [product];
 }
 
 class LikeProductLoadedState extends LikedProductState {

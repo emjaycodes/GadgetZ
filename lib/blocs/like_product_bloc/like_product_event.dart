@@ -19,9 +19,9 @@ class LikeProductEvent extends LikedProductEvent {
 
 class UnlikeProduct extends LikedProductEvent {
   final Product product;
-   final bool isLiked;
+  //  final bool isLiked;
 
-  const UnlikeProduct(this.product, this.isLiked);
+  const UnlikeProduct(this.product,);
 
    @override
   List<Object> get props => [product];

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
@@ -69,9 +67,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
             ),
             kbigSizedbox,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
                 'Description',
                 style: TextStyle(fontSize: 25),
               ),
@@ -86,7 +84,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
@@ -97,18 +95,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       if (state is LikeProductLoadedState) {
                         // Show a snackbar when the product is liked
                         showSnackbarMessage("Product has been liked!",  Icons.favorite, context,);
+                      } else if(state is DislikedProductState){
+                        // Show a snackbar when the product is liked
+                        showSnackbarMessage("Product has been disliked!",  Icons.favorite, context,);
+                        widget.product.liked = false;
                       }
                     },
                     builder: (BuildContext context, state) {
                       return InkWell(
                         onTap: () {
-                          BlocProvider.of<LikedProductBloc>(context).add(
+                          if (widget.product.liked == false) {
+                            BlocProvider.of<LikedProductBloc>(context).add(
                             LikeProductEvent(widget.product),
                           );
+                           widget.product.liked = !widget.product.liked;
                           print(widget.product.liked);
-                          setState(() {
-                            isliked =! isliked;
-                          });
+                          } else if (widget.product.liked == true){
+                              BlocProvider.of<LikedProductBloc>(context).add(UnlikeProduct(widget.product));
+                          }
+                          
                         },
                         child: Container(
                           height: 40,

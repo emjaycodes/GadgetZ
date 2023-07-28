@@ -27,11 +27,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final ProductRepository _repository = ProductRepository();
 
   /// For debugging purposes.
-  @override
-  void onChange(Change<ProductState> change) {
-    print('OBSERVED CHANGE IN PRODUCTBLOC: $change');
-    super.onChange(change);
-  }
+  // @override
+  // void onChange(Change<ProductState> change) {
+  //   print('OBSERVED CHANGE IN PRODUCTBLOC: $change');
+  //   super.onChange(change);
+  // }
 
   List<Product> products = [];
 
