@@ -15,6 +15,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
     on<FetchProductsEvent>(_handleFetchProductEvent);
 
+    on<SortProductsEvent>((event, emit) => ProductsUpdatedState(event.sortedProducts));
+
     // on<AddProductEvent>(_handleAddProductEvent);
 
     on<NavigateToProductDetailsEvent>((event, emit) {

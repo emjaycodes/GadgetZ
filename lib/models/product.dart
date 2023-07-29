@@ -6,7 +6,7 @@ class Product {
   final String image;
   final String description;
   int quantity;
-  bool liked = false;
+  bool liked = false; 
 
   Product(this.id, this.name, this.price, this.brand, this.description, this.image,
       this.quantity, this.liked);

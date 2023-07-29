@@ -22,3 +22,9 @@ class NavigateToProductDetailsEvent extends ProductEvent{
 
    NavigateToProductDetailsEvent(this.product);
 }
+
+class SortProductsEvent extends ProductEvent {
+  final List<Product> sortedProducts;
+
+  SortProductsEvent({required this.sortedProducts});
+}

@@ -6,6 +6,7 @@ import 'package:oga_bassey/repositories/product_repository.dart';
 import 'package:oga_bassey/size_cofig.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
 import '../components/cart_icon_button.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({
@@ -41,7 +42,12 @@ class _CartScreenState extends State<CartScreen> {
                   return const Center(
                       child: Text("YOU HAVEN'T ADDED ANY ITEM TO CART"));
                 }
-                return buildCartList(cartItems);
+                return ListView.builder(
+                    itemCount: cartItems.length,
+                    itemBuilder: (context, index) {
+                      final cartItem = cartItems[index];
+                      return CartContainer(cartItem: cartItem);
+                    });
               } else {
                 return const Center(
                   child: Text("YOU HAVEN'T ADDED ANY ITEM TO CART"),
@@ -61,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               ),
             InkWell(
-              onTap: () {
+              onTap: () { 
                 print(ProductRepository().calculateTotalPrice(cartList).toString());
               },
               child: Container(
@@ -88,96 +94,112 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
-           Widget buildCartList(
-            List<Product> cartItems) {
-                    return ListView.builder(
-                    itemCount: cartItems.length,
-                    itemBuilder: (context, index) {
-                      final cartItem = cartItems[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: SizeConfig.screenHeight * 0.2,
-                          width: 7,
-                          decoration: BoxDecoration(
-                              color: kprimaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: SizeConfig.screenHeight * 0.9,
-                                  width: SizeConfig.screenWidth * 0.4,
-                                  decoration: BoxDecoration(
-                                      color: ktertiaryColor,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Image.network(cartItem.image),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 3,
-                              ),
-                              Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      cartItem.name,
-                                      style: const TextStyle(
-                                          color: ktertiaryColor,
-                                          fontSize: 18,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    Text(
-                                      cartItem.price.toString(),
-                                      style: const TextStyle(
-                                        color: ktertiaryColor,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        CartIconButton(
-                                          cartIcon: const Icon(Icons.remove),
-                                          ontap: () {
-                                            BlocProvider.of<CartBloc>(context)
-                                                .add(
-                                                    DecreaseCartItemQuantityEvent(
-                                                        cartItem));
-                                              print('decrease');
-                                              print(cartItem.quantity);
-                                          },
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          cartItem.quantity.toString(),
-                                          style: const TextStyle(
-                                            color: ktertiaryColor,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        CartIconButton(
-                                            cartIcon: const Icon(Icons.add),
-                                            ontap: () {
-                                              BlocProvider.of<CartBloc>(context)
-                                                  .add(
-                                                      IncreaseCartItemQuantityEvent(
-                                                          cartItem));
-                                              print('increased');
-                                              print(cartItem.quantity);
-                                            })
-                                      ],
-                                    ),
-                                  ]),
-                            ],
+//            Widget buildCartList(
+//             List<Product> cartItems) {
+//                     return ListView.builder(
+//                     itemCount: cartItems.length,
+//                     itemBuilder: (context, index) {
+//                       final cartItem = cartItems[index];
+//                       return CartContainer(cartItem: cartItem);
+//                     });
+// }
+
+class CartContainer extends StatelessWidget {
+  const CartContainer({
+    super.key,
+    required this.cartItem,
+  });
+
+  final Product cartItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: SizeConfig.screenHeight * 0.2,
+          width: 7,
+          decoration: BoxDecoration(
+              color: kprimaryColor,
+              borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: SizeConfig.screenHeight * 0.9,
+                  width: SizeConfig.screenWidth * 0.4,
+                  decoration: BoxDecoration(
+                      color: ktertiaryColor,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Image.network(cartItem.image),
+                ),
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              Column(
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      cartItem.name,
+                      style: const TextStyle(
+                          color: ktertiaryColor,
+                          fontSize: 18,
+                          overflow: TextOverflow.ellipsis),
+                    ),
+                    Text(
+                      cartItem.price.toString(),
+                      style: const TextStyle(
+                        color: ktertiaryColor,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        CartIconButton(
+                          cartIcon: const Icon(Icons.remove),
+                          ontap: () {
+                            BlocProvider.of<CartBloc>(context)
+                                .add(
+                                    DecreaseCartItemQuantityEvent(
+                                        cartItem));
+                              print('decrease');
+                              print(cartItem.quantity);
+                          },
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          cartItem.quantity.toString(),
+                          style: const TextStyle(
+                            color: ktertiaryColor,
                           ),
                         ),
-                      );
-                    });
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        CartIconButton(
+                            cartIcon: const Icon(Icons.add),
+                            ontap: () {
+                              BlocProvider.of<CartBloc>(context)
+                                  .add(
+                                      IncreaseCartItemQuantityEvent(
+                                          cartItem));
+                              print('increased');
+                              print(cartItem.quantity);
+                            })
+                      ],
+                    ),
+                  ]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -8,11 +8,18 @@ import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/product_container.dart';
 import '../../../models/product.dart';
 
+enum SortOptions{
+  nameAscending,
+  nameDescending,
+  priceAscending,
+  priceDescending,
+}
 
 class ProductBody extends StatefulWidget {
   const ProductBody({Key? key}) : super(key: key);
 
   static String id = 'product_screen';
+ 
 
   @override
   State<ProductBody> createState() => _ProductBodyState();
@@ -20,13 +27,36 @@ class ProductBody extends StatefulWidget {
 
 class _ProductBodyState extends State<ProductBody> {
     late ProductBloc _productBloc;
-  
+   SortOptions _currentSortOptions = SortOptions.nameAscending;
   @override
   void initState() {
     _productBloc = BlocProvider.of<ProductBloc>(context);
     _productBloc.add(FetchProductsEvent());
     super.initState();
   }
+  
+    void _sortProduct(){
+      final state = _productBloc.state;
+      if (state is ProductsUpdatedState) {
+        final List<Product> products = state.products;
+        switch (_currentSortOptions) {
+          case SortOptions.nameAscending:
+            products.sort((a, b)=> a.name.compareTo(b.name));
+            break;
+          case SortOptions.nameDescending:
+          products.sort((a,b) => b.name.compareTo(a.name));
+          break;
+          case SortOptions.priceAscending:
+          products.sort((a,b) => a.price.compareTo(b.price));
+          break;
+          case SortOptions.priceDescending:
+          products.sort((a,b) => b.price.compareTo(a.price));
+          break;
+        }
+        _productBloc.add(SortProductsEvent(sortedProducts: products));  
+      }
+    }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -61,22 +91,62 @@ class _ProductBodyState extends State<ProductBody> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('40 Laptop Products'),
-              Container(
-                height: 35,
-                width: 90,
-                decoration: BoxDecoration(
-                  color: ktertiaryColor,
-                  borderRadius: BorderRadius.circular(6)
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Sort By'),
-                    Icon(Icons.arrow_drop_down_outlined)
-                  ],
-                ),
+              Text('Laptop Products'),
+
+              // dropdown button
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:10.0),
+                child: DropdownButton<SortOptions>(
+                  iconEnabledColor: kprimaryColor,
+                  onChanged: (SortOptions? newValue){
+                    if(newValue != null){
+                      setState(() {
+                        _currentSortOptions = newValue;
+                        _sortProduct();
+                      });
+                    }
+                  },
+                  value: _currentSortOptions,
+                  items: SortOptions.values.map((sortOptions){
+                    String sortText;
+                    switch(sortOptions){
+                      case SortOptions.nameAscending :
+                      sortText = 'Name A - Z';
+                      break;
+                      case SortOptions.nameDescending:
+                        sortText = 'Name A - Z';
+                        break;
+                      case SortOptions.priceAscending:
+                        sortText = 'Price( Low - High)';
+                        break;
+                      case SortOptions.priceDescending:
+                        sortText = 'Price(High - low)';
+                        break;
+                    }
+                    return DropdownMenuItem(
+                      value: sortOptions,
+                      child: Text(sortText));
+                  }
+                  ).toList()
+                  
+                  ),
               )
+              // Container(
+              //   height: 35,
+              //   width: 90,
+              //   decoration: BoxDecoration(
+              //     color: ktertiaryColor,
+              //     borderRadius: BorderRadius.circular(6)
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Text('Sort By'),
+              //       Icon(Icons.arrow_drop_down_outlined)
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),
@@ -121,3 +191,5 @@ class _ProductBodyState extends State<ProductBody> {
     );
   }
 } 
+
+

@@ -26,7 +26,7 @@ class ProductRepository {
     _cartList.remove(product);
   }
 
-  double calculateTotalPrice(List<Product> cartProducts) {
+  int calculateTotalPrice(List<Product> cartProducts) {
     double totalPrice = 0.0;
     print(cartList);
     for (Product product in cartProducts) {
@@ -34,7 +34,7 @@ class ProductRepository {
       print( product.price);
       print(product);
     }
-    return totalPrice;
+    return totalPrice.round();
   }
 
   final List<Product> _likedProduct = [];
