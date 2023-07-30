@@ -87,66 +87,53 @@ class _ProductBodyState extends State<ProductBody> {
         ),
         kbigSizedbox,
         Padding(
-          padding: const EdgeInsets.only(left:10.0, right: 12.0),
+          padding: const EdgeInsets.only(left:12.0, right: 12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Laptop Products'),
+              Text('Laptop Products',
+              style: TextStyle(
+                color: kprimaryColor,
+                fontSize: 14
+              ),
+              ),
 
               // dropdown button
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:10.0),
-                child: DropdownButton<SortOptions>(
-                  iconEnabledColor: kprimaryColor,
-                  onChanged: (SortOptions? newValue){
-                    if(newValue != null){
-                      setState(() {
-                        _currentSortOptions = newValue;
-                        _sortProduct();
-                      });
-                    }
-                  },
-                  value: _currentSortOptions,
-                  items: SortOptions.values.map((sortOptions){
-                    String sortText;
-                    switch(sortOptions){
-                      case SortOptions.nameAscending :
+              DropdownButton<SortOptions>(
+                iconEnabledColor: kprimaryColor,
+                icon: Icon(Icons.arrow_drop_down_outlined),
+                onChanged: (SortOptions? newValue){
+                  if(newValue != null){
+                    setState(() {
+                      _currentSortOptions = newValue;
+                      _sortProduct();
+                    });
+                  }
+                },
+                value: _currentSortOptions,
+                items: SortOptions.values.map((sortOptions){
+                  String sortText;
+                  switch(sortOptions){
+                    case SortOptions.nameAscending :
+                    sortText = 'Name A-Z';
+                    break;
+                    case SortOptions.nameDescending:
                       sortText = 'Name A - Z';
                       break;
-                      case SortOptions.nameDescending:
-                        sortText = 'Name A - Z';
-                        break;
-                      case SortOptions.priceAscending:
-                        sortText = 'Price( Low - High)';
-                        break;
-                      case SortOptions.priceDescending:
-                        sortText = 'Price(High - low)';
-                        break;
-                    }
-                    return DropdownMenuItem(
-                      value: sortOptions,
-                      child: Text(sortText));
+                    case SortOptions.priceAscending:
+                      sortText = 'Price(Low-High)';
+                      break;
+                    case SortOptions.priceDescending:
+                      sortText = 'Price(High-low)';
+                      break;
                   }
-                  ).toList()
-                  
-                  ),
-              )
-              // Container(
-              //   height: 35,
-              //   width: 90,
-              //   decoration: BoxDecoration(
-              //     color: ktertiaryColor,
-              //     borderRadius: BorderRadius.circular(6)
-              //   ),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       Text('Sort By'),
-              //       Icon(Icons.arrow_drop_down_outlined)
-              //     ],
-              //   ),
-              // )
+                  return DropdownMenuItem(
+                    value: sortOptions,
+                    child: Text(sortText));
+                }
+                ).toList()
+                )
             ],
           ),
         ),
