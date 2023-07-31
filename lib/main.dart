@@ -28,10 +28,6 @@ void main() async {
   
   runApp(
     MultiBlocProvider(
-      // NOTE: The Bloc must be created once and accessed from anywhere in
-      // the app through BlocProvider.of<T>(context) or context.read<T>().
-      // It will be autodisposed by the BlocProvider when the app is closed.
-    
       providers: [
         BlocProvider(
           create: (context) => ProductBloc(),

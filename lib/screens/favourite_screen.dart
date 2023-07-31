@@ -19,7 +19,7 @@ class FavouriteScreen extends StatelessWidget {
           if (state is LikeProductLoadedState) {
             final likedItems = state.likedProductList;
             if (likedItems.isEmpty) {
-              return const Text("YOU HAVE'NT LIKED ANY ITEM ");
+              return const Text("YOU HAVEN'T LIKED ANY ITEM ");
             }
             return GridView.builder(
                 itemCount: likedItems.length,
@@ -71,7 +71,7 @@ class FavouriteScreen extends StatelessWidget {
                 }));
           } else {
             return const Center(
-              child: Text(" YOU HAVE'NT LIKED ANY ITEM "),
+              child: Text(" YOU HAVEN'T LIKED ANY ITEM "),
             );
           }
         },

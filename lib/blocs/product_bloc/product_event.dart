@@ -28,3 +28,9 @@ class SortProductsEvent extends ProductEvent {
 
   SortProductsEvent({required this.sortedProducts});
 }
+
+class SearchProductsEvent extends ProductEvent{
+  final String query;
+
+  SearchProductsEvent(this.query);
+}

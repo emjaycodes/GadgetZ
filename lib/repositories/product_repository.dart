@@ -14,6 +14,7 @@ class ProductRepository {
     });
   }
 
+  // cart list
   final List<Product> _cartList = [];
 
   get cartList => _cartList;
@@ -36,6 +37,8 @@ class ProductRepository {
     }
     return totalPrice.round();
   }
+
+  // liked product list
 
   final List<Product> _likedProduct = [];
 

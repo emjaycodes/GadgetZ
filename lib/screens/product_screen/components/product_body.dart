@@ -27,6 +27,7 @@ class ProductBody extends StatefulWidget {
 
 class _ProductBodyState extends State<ProductBody> {
     late ProductBloc _productBloc;
+    String _searchQuery = '';
    SortOptions _currentSortOptions = SortOptions.nameAscending;
   @override
   void initState() {
@@ -65,6 +66,12 @@ class _ProductBodyState extends State<ProductBody> {
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: TextField(
+            onChanged: (value){
+              setState(() {
+                _searchQuery = value;
+                  _productBloc.add(SearchProductsEvent(value));
+              });
+            },
             decoration: InputDecoration(
               filled: true,
               fillColor: ktertiaryColor,
@@ -72,14 +79,13 @@ class _ProductBodyState extends State<ProductBody> {
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search_outlined),
                   onPressed: () {
-                    setState(() {
-                    });
+                 _productBloc.add(SearchProductsEvent(_searchQuery));
                   },
                 ),
                 enabledBorder: OutlineInputBorder(
-                  // borderSide: BorderSide(
-                  //   width: 3, color: kprimaryColor,
-                  // ),
+                  borderSide: BorderSide(
+                    width: 3, color: kprimaryColor,
+                  ),
                   borderRadius: BorderRadius.circular(10)
                 )
                 ),
