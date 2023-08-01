@@ -19,7 +19,6 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    bool isliked = false;
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/checkout_screen.dart';
+import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/repositories/product_repository.dart';
@@ -21,12 +23,6 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   double totalPrice = 0.0;
 
-  @override
-  void initState() {
-    super.initState();
-    // print(ProductRepository().calculateTotalPrice());
-  
-  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -66,33 +62,15 @@ class _CartScreenState extends State<CartScreen> {
                 color: kprimaryColor
               ),
               ),
-            InkWell(
-              onTap: () { 
-                print(ProductRepository().calculateTotalPrice(cartList).toString());
-              },
-              child: Container(
-                height: SizeConfig.screenHeight / 16,
-                width: SizeConfig.screenWidth * 0.7,
-                decoration: BoxDecoration(
-                  color: kprimaryColor,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Checkout',
-                    style: TextStyle(
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+             CheckoutButton(buttonText: 'Checkout', ontap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckoutScreen()));}),
           ],
         ),
       ],
     ));
   }
 }
+
+
 
 //            Widget buildCartList(
 //             List<Product> cartItems) {

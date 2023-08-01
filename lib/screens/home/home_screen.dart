@@ -90,11 +90,5 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
-    // CustomNavbar(ontap: (selectedIndex ) {
-    //   setState(() {
-    //     selectedIndex = index;
-    //   });
-    //   },
-    // selectedIndex: selectedIndex,));
   }
 }

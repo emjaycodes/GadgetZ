@@ -27,6 +27,8 @@ class ProductRepository {
     _cartList.remove(product);
   }
 
+  // calculate Total Price of the cart
+
   int calculateTotalPrice(List<Product> cartProducts) {
     double totalPrice = 0.0;
     print(cartList);

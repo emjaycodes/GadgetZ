@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:oga_bassey/blocs/cart_bloc/cart_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
+import 'package:oga_bassey/checkout_screen.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/auth/auth_flow_screen.dart';
 import 'package:oga_bassey/screens/cart_screen.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
         SignupBody.id: (context) => const SignupBody(),
         FavouriteScreen.id:(context) => const FavouriteScreen(),
         CartScreen.id: (context)=>  const CartScreen(),
+        CheckoutScreen.id:(context) => const CheckoutScreen()
       },
     );
   }
