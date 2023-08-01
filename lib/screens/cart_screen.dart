@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oga_bassey/checkout_screen.dart';
+import 'package:oga_bassey/screens/checkout_screen.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
@@ -92,90 +92,88 @@ class CartContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: SizeConfig.screenHeight * 0.2,
-          width: 7,
-          decoration: BoxDecoration(
-              color: kprimaryColor,
-              borderRadius: BorderRadius.circular(20)),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: SizeConfig.screenHeight * 0.9,
-                  width: SizeConfig.screenWidth * 0.4,
-                  decoration: BoxDecoration(
-                      color: ktertiaryColor,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Image.network(cartItem.image),
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: SizeConfig.screenHeight * 0.2,
+        width: 7,
+        decoration: BoxDecoration(
+            color: kprimaryColor,
+            borderRadius: BorderRadius.circular(20)),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: SizeConfig.screenHeight * 0.9,
+                width: SizeConfig.screenWidth * 0.4,
+                decoration: BoxDecoration(
+                    color: ktertiaryColor,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Image.network(cartItem.image),
               ),
-              const SizedBox(
-                width: 3,
-              ),
-              Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      cartItem.name,
-                      style: const TextStyle(
-                          color: ktertiaryColor,
-                          fontSize: 18,
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                    Text(
-                      cartItem.price.toString(),
-                      style: const TextStyle(
+            ),
+            const SizedBox(
+              width: 3,
+            ),
+            Column(
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    cartItem.name,
+                    style: const TextStyle(
                         color: ktertiaryColor,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  Text(
+                    cartItem.price.toString(),
+                    style: const TextStyle(
+                      color: ktertiaryColor,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Row(
-                      children: [
-                        CartIconButton(
-                          cartIcon: const Icon(Icons.remove),
+                  ),
+                  Row(
+                    children: [
+                      CartIconButton(
+                        cartIcon: const Icon(Icons.remove),
+                        ontap: () {
+                          BlocProvider.of<CartBloc>(context)
+                              .add(
+                                  DecreaseCartItemQuantityEvent(
+                                      cartItem));
+                            print('decrease');
+                            print(cartItem.quantity);
+                        },
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        cartItem.quantity.toString(),
+                        style: const TextStyle(
+                          color: ktertiaryColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      CartIconButton(
+                          cartIcon: const Icon(Icons.add),
                           ontap: () {
                             BlocProvider.of<CartBloc>(context)
                                 .add(
-                                    DecreaseCartItemQuantityEvent(
+                                    IncreaseCartItemQuantityEvent(
                                         cartItem));
-                              print('decrease');
-                              print(cartItem.quantity);
-                          },
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          cartItem.quantity.toString(),
-                          style: const TextStyle(
-                            color: ktertiaryColor,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        CartIconButton(
-                            cartIcon: const Icon(Icons.add),
-                            ontap: () {
-                              BlocProvider.of<CartBloc>(context)
-                                  .add(
-                                      IncreaseCartItemQuantityEvent(
-                                          cartItem));
-                              print('increased');
-                              print(cartItem.quantity);
-                            })
-                      ],
-                    ),
-                  ]),
-            ],
-          ),
+                            print('increased');
+                            print(cartItem.quantity);
+                          })
+                    ],
+                  ),
+                ]),
+          ],
         ),
       ),
     );

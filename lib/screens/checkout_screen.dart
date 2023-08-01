@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/services/location_service.dart';
 
 class CheckoutScreen extends StatefulWidget {
   static String id = 'cart_screen';
@@ -12,8 +14,16 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final checkController = TextEditingController();
+  late Future<Position> position;
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+  position = LocationService().getPosition();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
