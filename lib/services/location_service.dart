@@ -1,56 +1,64 @@
-
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-class LocationService{
-   Position? currentPosition; 
+class LocationService {
 
-   Future<Position> getPosition ()async{
-    
-      bool serviceEnabled;
-      LocationPermission permission;
-     
-     serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      permission = await Geolocator.checkPermission();
+    double? latitude;
+    double? longitude;
+   Position? currentPosition;
+   Placemark? address;
 
+  Future<void> getPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    //  Position? currentpos;
 
-    if (!serviceEnabled){
-      throw Exception("Location services are not enabled." );
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    permission = await Geolocator.checkPermission();
+
+    if (!serviceEnabled) {
+       Geolocator.openLocationSettings();
     }
-    
-    
+
     if (permission == LocationPermission.denied) {
       Geolocator.requestPermission();
-        
-        throw Exception("Location services are not enabled.");
-        
+
+      throw Exception("Location services are not enabled.");
     }
     if (permission == LocationPermission.deniedForever) {
       throw Exception("Location permission denied forever.");
     }
 
-    if (permission == LocationPermission.whileInUse) {
-      print(Geolocator.getCurrentPosition());
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-     if (permission == LocationPermission.deniedForever) {
-    // Permissions are denied forever, handle appropriately. 
-    return Future.error(
-      'Location permissions are permanently denied, we cannot request permissions.');
-  } 
-    
-       return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    
+    try {
+        currentPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+
+          latitude = currentPosition?.latitude ?? 0.0;
+          longitude = currentPosition?.longitude ?? 0.0;
+      print('pos $latitude $longitude $currentPosition' );
+  
+    } catch (e) {
+      print(e);
+    }
   }
 
-  // get getPosition => _getPosition();
-  
-  //  _getAddressFromCoordinates() async{
     
-  //   try {
-  //     List<Placemark> placesmarks = await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.latitude);
-  //   } catch (e) {
-      
-  //   }
-  // }
+  Future<Placemark?> getAddressFromCoordinates() async{
+    try {
+      await getPosition(); 
+      List<Placemark> placesmarks = await placemarkFromCoordinates(latitude!, longitude!);
+       address = placesmarks[0];
+      print(address);
+    } catch (e) {
+      print(e);
+    }
+    return address;
+  }
+
 }

@@ -14,16 +14,22 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final checkController = TextEditingController();
-  late Future<Position> position;
+  late Future<void> position;
+  late Future<void> address;
+  late LocationService locationService;
 
   @override
   void initState() {
+  locationService = LocationService();
   position = LocationService().getPosition();
+  address = LocationService().getAddressFromCoordinates();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) { 
+    print(locationService.latitude);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -38,7 +44,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         children: [
           kbigSizedbox,
           // text saying shipping address
-          const Text(
+           Text(
             'Enter Shipping Address',
             style: TextStyle(fontSize: 15),
           ),
