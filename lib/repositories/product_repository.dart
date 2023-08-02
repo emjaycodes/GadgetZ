@@ -31,11 +31,8 @@ class ProductRepository {
 
   int calculateTotalPrice(List<Product> cartProducts) {
     double totalPrice = 0.0;
-    print(cartList);
     for (Product product in cartProducts) {
       totalPrice += product.price * product.quantity;
-      print( product.price);
-      print(product);
     }
     return totalPrice.round();
   }

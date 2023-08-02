@@ -48,6 +48,7 @@ dependencies:
   shimmer: ^3.0.0
   geolocator: ^9.0.2
   geocoding: ^2.1.0
+  flutter_paystack: ^1.0.7
   # flutter_facebook_auth: ^5.0.8
 
 

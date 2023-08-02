@@ -7,11 +7,13 @@ class LocationService {
     double? longitude;
    Position? currentPosition;
    Placemark? address;
+   String? stateAddress;
+   String? countryAddress;
+
 
   Future<void> getPosition() async {
     bool serviceEnabled;
     LocationPermission permission;
-    //  Position? currentpos;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     permission = await Geolocator.checkPermission();
@@ -49,16 +51,19 @@ class LocationService {
   }
 
     
-  Future<Placemark?> getAddressFromCoordinates() async{
+   getAddressFromCoordinates() async{
     try {
       await getPosition(); 
       List<Placemark> placesmarks = await placemarkFromCoordinates(latitude!, longitude!);
        address = placesmarks[0];
-      print(address);
+       stateAddress = address!.street;
+       countryAddress = address!.country;
+      // print(address);
+      print(stateAddress);
+      print(countryAddress);
     } catch (e) {
       print(e);
     }
-    return address;
   }
 
 }

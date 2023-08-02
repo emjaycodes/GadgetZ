@@ -1,6 +1,11 @@
 
 import 'package:flutter/material.dart';
 
+class ConstantKey {
+  // ignore: constant_identifier_names
+  static const String PAYSTACK_KEY = "pk_test_291cd3614d62fa2ab67955bd533f1d210660212d";
+}
+
 const ksecondaryColor = Color(0xFFE30008);
 const kprimaryColor = Color(0xFF081658);
 const kprimaryTextColor = Color(0xFF37474F);
