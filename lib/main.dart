@@ -90,7 +90,6 @@ class MyApp extends StatelessWidget {
         SignupBody.id: (context) => const SignupBody(),
         FavouriteScreen.id:(context) => const FavouriteScreen(),
         CartScreen.id: (context)=>  const CartScreen(),
-        CheckoutScreen.id:(context) => const CheckoutScreen()
       },
     );
   }

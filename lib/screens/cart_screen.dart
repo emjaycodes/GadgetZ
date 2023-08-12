@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/blocs/payment_bloc/payment_bloc.dart';
 import 'package:oga_bassey/screens/checkout_screen.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
@@ -62,7 +63,12 @@ class _CartScreenState extends State<CartScreen> {
                 color: kprimaryColor
               ),
               ),
-             CheckoutButton(buttonText: 'Checkout', ontap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckoutScreen()));}),
+             CheckoutButton(
+              buttonText: 'Checkout',
+               ontap: (){
+                // BlocProvider.of<PaymentBloc>(context).add(NavigateToPaymentPageEvent(cartList));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CheckoutScreen(product: cartList,)));                },),
+                 
           ],
         ),
       ],

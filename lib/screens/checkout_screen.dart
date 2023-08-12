@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/location_bloc/location_bloc.dart';
+import 'package:oga_bassey/blocs/payment_bloc/payment_bloc.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/models/product.dart';
 
 class CheckoutScreen extends StatefulWidget {
+  final List<Product> product;
   static String id = 'cart_screen';
-  const CheckoutScreen({super.key});
+  const CheckoutScreen({super.key, required this.product,});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -14,7 +17,7 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final checkController = TextEditingController();
-  //  
+  //
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +48,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: BlocBuilder<LocationBloc, LocationState>(
                     builder: (context, state) {
-                      if (state is LocationLoadedState) {
-                        checkController.text = state.address;
+                      if (state is LocationLoadingState) {
+                        return const Center(child: CircularProgressIndicator(
+                          color: kprimaryColor,
+                        ));
                       } else if (state is LocationErrorState) {
                         // Show an error message
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(state.message)));
+                      }  else if (state is LocationLoadedState){
+                        checkController.text = state.address.trim();
                       }
                       return TextFormField(
-                         enableSuggestions: true,
+                        enableSuggestions: true,
                         controller: checkController,
                         decoration: InputDecoration(
                             hintText: 'Lagos, Nigeria',
@@ -74,14 +81,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   size: 30,
                   color: kprimaryColor,
                 ),
-                onPressed: (){
-                  BlocProvider.of<LocationBloc>(context).add(FetchLocationEvent());
+                onPressed: () {
+                  BlocProvider.of<LocationBloc>(context)
+                      .add(FetchLocationEvent());
                 },
               ),
             ],
           ),
           const Spacer(),
-          const CheckoutButton(buttonText: 'Pay'),
+          //  BlocBuilder<PaymentBloc, PaymentState>(
+          //   builder: (context, state) {
+          //     return CheckoutButton(
+          //       buttonText: 'Pay',
+          //       ontap: (){
+          //          BlocProvider.of<PaymentBloc>(context)
+          //             .add(CardPaymentEvent(context));
+
+          //       } ,
+          //       );
+          //   },
+          // ),
           ksmallSizedbox,
         ],
       ),
