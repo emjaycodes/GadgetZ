@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/payment_bloc/payment_bloc.dart';
+import 'package:oga_bassey/models/user_model.dart';
 import 'package:oga_bassey/screens/checkout_screen.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart';
@@ -66,8 +67,9 @@ class _CartScreenState extends State<CartScreen> {
              CheckoutButton(
               buttonText: 'Checkout',
                ontap: (){
+                final totalCartPrice = ProductRepository().calculateTotalPrice(cartList);
                 // BlocProvider.of<PaymentBloc>(context).add(NavigateToPaymentPageEvent(cartList));
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CheckoutScreen(product: cartList,)));                },),
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CheckoutScreen(productList: cartList, totalCartPrice: totalCartPrice.toDouble())));},),
                  
           ],
         ),
@@ -178,6 +180,24 @@ class CartContainer extends StatelessWidget {
                           })
                     ],
                   ),
+              //     Expanded(
+              // child: ElevatedButton(
+              //   onPressed: () {
+              //     // Initiate payment process
+              //     BlocProvider.of<PaymentBloc>(context).add(
+              //       CardPaymentEvent(
+              //         cartItem.price.toInt(),
+              //         UserModel().email ?? '',
+              //         context,
+              //       ),
+              //     );
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: kprimaryColor,
+              //   ),
+              //   child: Text('Checkout \$${cartItem.price * cartItem.quantity}'),
+              // ),
+              // )
                 ]),
           ],
         ),

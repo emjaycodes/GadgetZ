@@ -13,7 +13,7 @@ class PaystackPayment {
 
   int price;
 
-  String email;
+  String? email;
 
 
   PaystackPlugin paystack = PaystackPlugin();
@@ -43,13 +43,13 @@ class PaystackPayment {
     initializePlugin().then((_) async{
       Charge charge = Charge()
       ..amount = price * 100
-      ..email 
+      ..email = email
       ..reference = _getReference()
       ..card = _getCardUi();
       CheckoutResponse response = await paystack.checkout(
-        ctx, 
+      ctx, 
       charge: charge,
-      method: CheckoutMethod.card,
+      method: CheckoutMethod. card,
       fullscreen: false,
       logo: FlutterLogo(size: 24,)
       );

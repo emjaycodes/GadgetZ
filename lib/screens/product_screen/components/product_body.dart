@@ -164,6 +164,7 @@ class _ProductBodyState extends State<ProductBody> {
                   final Product product = products[index];
                   return ProductContainer(
                     productName: product.name,
+                    //you changed to double for experiment
                     productPrice: product.price,
                     productbrand: product.brand,
                     productImage: product.image,

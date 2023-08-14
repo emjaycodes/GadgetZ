@@ -1,15 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/location_bloc/location_bloc.dart';
-import 'package:oga_bassey/blocs/payment_bloc/payment_bloc.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
-import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/constants.dart'; 
 import 'package:oga_bassey/models/product.dart';
 
+
+import '../blocs/payment_bloc/payment_bloc.dart';
+
 class CheckoutScreen extends StatefulWidget {
-  final List<Product> product;
+  final List<Product> productList;
+  final double totalCartPrice;
   static String id = 'cart_screen';
-  const CheckoutScreen({super.key, required this.product,});
+  const CheckoutScreen({super.key, required this.productList, required this.totalCartPrice,});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -89,18 +93,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ],
           ),
           const Spacer(),
-          //  BlocBuilder<PaymentBloc, PaymentState>(
-          //   builder: (context, state) {
-          //     return CheckoutButton(
-          //       buttonText: 'Pay',
-          //       ontap: (){
-          //          BlocProvider.of<PaymentBloc>(context)
-          //             .add(CardPaymentEvent(context));
-
-          //       } ,
-          //       );
-          //   },
-          // ),
+          CheckoutButton(buttonText: 'Pay', ontap: (){
+            final user = FirebaseAuth.instance.currentUser;
+            final userEmail = user?.email!;
+            final totalCartPrice = widget.totalCartPrice;
+            BlocProvider.of<PaymentBloc>(context).add(CardPaymentEvent(totalCartPrice.toInt(), userEmail, context));
+          },),
           ksmallSizedbox,
         ],
       ),

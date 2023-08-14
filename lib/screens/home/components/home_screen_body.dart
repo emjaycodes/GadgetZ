@@ -232,6 +232,7 @@ class _HomeBodyState extends State<HomeBody> {
                     final Product product = products[index];
                     return ProductContainer(
                       productName: product.name,
+                      //you changed to int for experiment
                       productPrice: product.price,
                       productbrand: product.brand,
                       productImage: product.image,
