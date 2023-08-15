@@ -51,7 +51,10 @@ class PaystackPayment {
       charge: charge,
       method: CheckoutMethod. card,
       fullscreen: false,
-      logo: FlutterLogo(size: 24,)
+      logo: SizedBox(
+        height: 30,
+        width: 30,
+        child: Image.asset('images/macbook.png'))
       );
       print("response ${response}");
 
