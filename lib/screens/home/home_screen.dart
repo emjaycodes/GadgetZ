@@ -2,10 +2,13 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:oga_bassey/blocs/cubit/theme_cubit.dart';
 import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/screens/cart_screen.dart';
 import 'package:oga_bassey/screens/home/components/home_screen_body.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 import '../../components/drawer_widget.dart';
 import '../favourite_screen.dart';
 
@@ -33,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //  final primaryColor = AppTheme.getPrimaryColor(context);
+    // final secondaryColor = AppTheme.getSecondaryColor(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,17 +52,17 @@ class _HomeScreenState extends State<HomeScreen> {
         //     ),
         //   onPressed: (){},
         //   ),
+        
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 15),
             child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, CartScreen.id);
-                },
-                icon: Icon(
-                  FontAwesomeIcons.bagShopping,
-                  color: kprimaryColor,
-                )),
+          onPressed: () {
+            BlocProvider.of<ThemeCubit>(context).toggleTheme();
+          },
+          icon: Icon(Icons.lightbulb),
+          // color: AppTheme.lightTheme? AppTheme.darkTheme : AppTheme.lightTheme,
+        ),
           )
         ],
         backgroundColor: Colors.white,

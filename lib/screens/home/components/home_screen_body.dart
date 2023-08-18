@@ -9,7 +9,7 @@ import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/screens/product_details_screen.dart';
 import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
-
+import 'package:oga_bassey/blocs/cubit/theme_cubit.dart';
 import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
@@ -246,8 +246,25 @@ class _HomeBodyState extends State<HomeBody> {
                 );
               } else if (state is ProductErrorState) {
                 print(state.errorMessage.toString());
-                
-                return Text('Error: ${state.errorMessage.toString()}');
+                 Text('Error: ${state.errorMessage.toString()}');
+                 return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Error: Unable to fetch products',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        _productBloc.add(FetchProductsEvent());
+                      },
+                      child: Text('Retry'),
+                    ),
+                  ],    
+                ),
+                 );
+
               } else {
                 return Center(child: ShimmerList());
               }

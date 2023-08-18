@@ -15,4 +15,10 @@ class CardPaymentEvent extends PaymentEvent {
    CardPaymentEvent(this.price, this.email, this.ctx); 
 }
 
+class OrderInRouteEvent extends PaymentEvent {
+  final String orderId;
+  final String location;
+
+  const OrderInRouteEvent(this.orderId, this.location);
+}
 

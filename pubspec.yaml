@@ -49,6 +49,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.1.0
   flutter_paystack: ^1.0.7
+  firebase_messaging: ^14.6.5
   # flutter_facebook_auth: ^5.0.8
 
 

@@ -93,7 +93,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ],
           ),
           const Spacer(),
-          CheckoutButton(buttonText: 'Pay', ontap: (){
+          CheckoutButton(
+            buttonText: 'Pay', 
+            ontap: (){
             final user = FirebaseAuth.instance.currentUser;
             final userEmail = user?.email!;
             final totalCartPrice = widget.totalCartPrice;
