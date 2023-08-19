@@ -9,7 +9,6 @@ import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/screens/product_details_screen.dart';
 import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
-import 'package:oga_bassey/blocs/cubit/theme_cubit.dart';
 import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
@@ -193,7 +192,7 @@ class _HomeBodyState extends State<HomeBody> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: kprimaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),

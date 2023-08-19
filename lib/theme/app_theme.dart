@@ -5,8 +5,18 @@ import 'package:oga_bassey/constants.dart';
 class AppTheme {
   
   static final lightTheme = ThemeData(
+    primaryColor: kprimaryColor,
+    fontFamily: GoogleFonts.poppins().fontFamily,
+     inputDecorationTheme: const InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: Color(0xFFDBDFE4))),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: kprimaryColor),
+      ),
+    ),
     colorScheme: ColorScheme.light(
-      primary: kprimaryColor
+      primary: kprimaryColor,
+      background: ksecondaryColor
     )
     // primaryColor: kprimaryColor,
     // hintColor: ksecondaryColor,
@@ -20,31 +30,23 @@ class AppTheme {
     //   ),
     // ),
 
-    // ... other light mode colors and settings
   );
 
   static final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    inputDecorationTheme: const InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: Color(0xFFDBDFE4))),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: kprimaryColor),
+      ),
+    ),
+    primaryColor: ksecondaryColor,
     colorScheme: ColorScheme.dark(
       primary: ktertiaryColor
     )
-    // primaryColor: kprimaryColor,
-    // hintColor: ksecondaryColor,
-    // ... other dark mode colors and settings
   );
 
-  // static Color getPrimaryColor(BuildContext context) {
-  //   final Brightness brightness = MediaQuery.of(context).platformBrightness;
-  //   final bool isDark = brightness == Brightness.dark;
-
-  //   return isDark ? darkTheme.primaryColor : lightTheme.primaryColor;
-  // }
-
-  // static Color getSecondaryColor(BuildContext context) {
-  //   final Brightness brightness = MediaQuery.of(context).platformBrightness;
-  //   final bool isDark = brightness == Brightness.dark;
-
-  //   return isDark ? darkTheme.hintColor : lightTheme.hintColor;
-  // }
-
-  // ... other color getters
+ 
 }
