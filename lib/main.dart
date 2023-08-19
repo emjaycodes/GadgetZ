@@ -31,7 +31,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebasePushNotification().initNotifications();
+  //Push notification
+  // await FirebasePushNotification().initNotifications();
 
   runApp(
     MultiBlocProvider(
