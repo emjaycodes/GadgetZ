@@ -5,6 +5,7 @@ import 'package:oga_bassey/blocs/location_bloc/location_bloc.dart';
 import 'package:oga_bassey/components/checkout_button.dart';
 import 'package:oga_bassey/constants.dart'; 
 import 'package:oga_bassey/models/product.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 
 
 import '../blocs/payment_bloc/payment_bloc.dart';
@@ -25,6 +26,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+   final themeData = AppTheme.getThemeData(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -32,7 +34,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           'Shipping Address',
           style: TextStyle(color: kprimaryColor),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: themeData.background,
         iconTheme: const IconThemeData(color: kprimaryColor),
       ),
       body: Column(

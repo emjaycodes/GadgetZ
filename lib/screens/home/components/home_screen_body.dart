@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/components/horizontal_list.dart';
 import 'package:oga_bassey/components/horizontal_stack_scroll.dart';
 import 'package:oga_bassey/components/product_container.dart';
 import 'package:oga_bassey/components/shimmer_loading.dart';
@@ -12,6 +13,7 @@ import 'package:oga_bassey/screens/product_screen/components/product_body.dart';
 import '../../../blocs/product_bloc/product_bloc.dart';
 import '../../../components/custom_stack.dart';
 import '../../../size_cofig.dart';
+import '../../../theme/app_theme.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({Key? key}) : super(key: key);
@@ -23,17 +25,7 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   bool istapped = true;
 
-  void toggleColour() {
-    if (istapped == true) {
-      istapped == false;
-    }
-  }
-
-  void toggleColourBack() {
-    if (istapped == false) {
-      istapped == true;
-    }
-  }
+  
 
   // late ProductList productList = ProductList();
   late ProductBloc _productBloc;
@@ -47,6 +39,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     SizeConfig().init(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,126 +53,7 @@ class _HomeBodyState extends State<HomeBody> {
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             height: 70,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                HorizontalStackScroll(
-                  activeColor: kprimaryColor,
-                  ontap: () {
-                    setState(() {
-                      toggleColour();
-                    });
-                  },
-                  gadgetType: Text(
-                    'Laptops',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                  productAmount: Text(
-                    '40 products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                  productImage: 'images/zen.png',
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                HorizontalStackScroll(
-                  ontap: () {
-                    toggleColourBack();
-                    print(istapped);
-                  },
-                  activeColor: ktertiaryColor,
-                  gadgetType: Text(
-                    'Smartphone',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productAmount: Text(
-                    '24 Products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productImage: 'images/iphone.png',
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                HorizontalStackScroll(
-                  activeColor: ktertiaryColor,
-                  gadgetType: Text(
-                    'Smartphone',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productAmount: Text(
-                    '24 Products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productImage: 'images/iphone.png',
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                HorizontalStackScroll(
-                  activeColor: ktertiaryColor,
-                  gadgetType: Text(
-                    'Laptops',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productAmount: Text(
-                    '24 Products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: kprimaryColor,
-                    ),
-                  ),
-                  productImage: 'images/zen.png',
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                HorizontalStackScroll(
-                  activeColor:
-                      istapped == true ? kprimaryColor : ktertiaryColor,
-                  gadgetType: Text(
-                    'Laptop',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                  productAmount: Text(
-                    '50 Products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: ktertiaryColor,
-                    ),
-                  ),
-                  productImage: 'images/zen.png',
-                ),
-              ],
-            ),
+            child: HorizontalListItem(),
           ),
         ),
         kbigSizedbox,
@@ -192,7 +66,7 @@ class _HomeBodyState extends State<HomeBody> {
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: Theme.of(context).primaryColor,
+                  color: themeData.tertiary,
                 ),
               ),
             ),
@@ -274,3 +148,4 @@ class _HomeBodyState extends State<HomeBody> {
     );
   }
 }
+

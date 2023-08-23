@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/theme_cubit/theme_cubit.dart';
 import '../constants.dart';
 import '../size_cofig.dart';
+import '../theme/app_theme.dart';
 
 class CheckoutButton extends StatelessWidget {
   const CheckoutButton({
@@ -16,17 +17,9 @@ class CheckoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeModeState>(
-      builder: (context, state) {
-         final themeMode = state.themeMode;
-        final buttonColor = themeMode == ThemeMode.dark
-            ? ktertiaryColor
-            : kprimaryColor;
-            
-      final textColor = themeMode == ThemeMode.dark
-            ? kprimaryColor
-            : ktertiaryColor;
-
+     final themeData = AppTheme.getThemeData(context);
+    final buttonColor = themeData.colorScheme.primary;
+    // final textColor = themeData.colorScheme.tertiary;
         return InkWell(
           onTap: ontap,
           child: Container(
@@ -40,13 +33,13 @@ class CheckoutButton extends StatelessWidget {
               child: Text(
                 buttonText,
                 style:  TextStyle(
-                  color: textColor,
+                  color: themeData.colorScheme.secondary,
                 ),
               ),
             ),
           ),
         );
-      },
-    );
   }
-}
+    
+  }
+

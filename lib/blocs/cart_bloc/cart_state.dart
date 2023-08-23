@@ -8,6 +8,7 @@ abstract class CartState extends Equatable {
 }
 
 class CartInitialState extends CartState {}
+class CartLoadingState extends CartState {}
 
 class CartloadedState extends CartState {
   final List<Product> _cartList;

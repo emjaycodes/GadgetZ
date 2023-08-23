@@ -36,25 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //  final primaryColor = AppTheme.getPrimaryColor(context);
-    // final secondaryColor = AppTheme.getSecondaryColor(context);
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return BlocBuilder<ThemeCubit, ThemeModeState>(
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: themeData.background,
           appBar: AppBar(
             elevation: 0,
             title: Text(
               'Hi there',
-              style: TextStyle(color: kprimaryColor),
+              style: TextStyle(color: themeData.tertiary ),
             ),
-            // leading: IconButton(
-            //   icon: Icon(
-            //     Icons.segment_outlined,
-            //     color: kprimaryColor,
-            //     ),
-            //   onPressed: (){},
-            //   ),
-
             actions: [
               Padding(
                 padding: EdgeInsets.only(right: 15),
@@ -63,20 +55,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     BlocProvider.of<ThemeCubit>(context).toggleTheme();
                   },
                   icon: Icon(Icons.lightbulb),
-                  // color: AppTheme.lightTheme? AppTheme.darkTheme : AppTheme.lightTheme,
+                  color: themeData.tertiary,
                 ),
               )
             ],
-            backgroundColor: Theme.of(context).primaryColor,
-            iconTheme: IconThemeData(color: kprimaryColor),
+            iconTheme: IconThemeData(color: themeData.tertiary),
           ),
           drawer: CustomDrawer(),
           body: screens[selectedIndex],
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: themeData.background,
             currentIndex: selectedIndex,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: kprimaryColor,
-            unselectedItemColor: ktertiaryColor,
+            selectedItemColor: themeData.tertiary,
+            unselectedItemColor: themeData.tertiary,
             iconSize: 20,
             showSelectedLabels: false,
             showUnselectedLabels: false,

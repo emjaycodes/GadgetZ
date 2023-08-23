@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oga_bassey/blocs/like_product_bloc/like_product_bloc.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 import '../constants.dart';
 import '../../../size_cofig.dart';
 
@@ -11,9 +12,10 @@ class FavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: themeData.background,
       body: BlocBuilder<LikedProductBloc, LikedProductState>(
         builder: (context, state) {
           if (state is LikeProductLoadedState) {

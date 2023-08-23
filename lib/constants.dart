@@ -12,6 +12,7 @@ const kprimaryTextColor = Color(0xFF37474F);
 const ksecondaryTextColor = Color(0xFF7F90A0);
 const kdisabledButtonColor = Color(0xFFDBDFE4);
 const ktertiaryColor = Color(0xFFDBDFE4);
+const kwhiteColor = Colors.white;
 
 const kbigSizedbox = SizedBox(height: 20);
 const ksmallSizedbox = SizedBox(height: 10);

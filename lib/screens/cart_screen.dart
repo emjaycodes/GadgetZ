@@ -8,6 +8,7 @@ import 'package:oga_bassey/constants.dart';
 import 'package:oga_bassey/models/product.dart';
 import 'package:oga_bassey/repositories/product_repository.dart';
 import 'package:oga_bassey/size_cofig.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 import '../blocs/cart_bloc/cart_bloc.dart';
 import '../components/cart_icon_button.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -27,14 +28,22 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: themeData.background,
         body: Column(
       children: [
         Expanded(
           child: BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              if (state is CartloadedState) {
+              if (state is CartLoadingState) {
+                return const Center(
+                    child: CircularProgressIndicator(),
+                );
+              } 
+              
+             if (state is CartloadedState) {
                 final cartItems = state.cartlist;
                 if (cartItems.isEmpty) {
                   return const Center(
@@ -58,17 +67,16 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Text(
               'Total: \$${ProductRepository().calculateTotalPrice(cartList)}',  
-              style: const TextStyle(
+              style:  TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: kprimaryColor
+                color: themeData.tertiary
               ),
               ),
              CheckoutButton(
               buttonText: 'Checkout',
                ontap: (){
                 final totalCartPrice = ProductRepository().calculateTotalPrice(cartList);
-                // BlocProvider.of<PaymentBloc>(context).add(NavigateToPaymentPageEvent(cartList));
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => CheckoutScreen(productList: cartList, totalCartPrice: totalCartPrice.toDouble())));},),
                  
           ],
@@ -77,18 +85,6 @@ class _CartScreenState extends State<CartScreen> {
     ));
   }
 }
-
-
-
-//            Widget buildCartList(
-//             List<Product> cartItems) {
-//                     return ListView.builder(
-//                     itemCount: cartItems.length,
-//                     itemBuilder: (context, index) {
-//                       final cartItem = cartItems[index];
-//                       return CartContainer(cartItem: cartItem);
-//                     });
-// }
 
 class CartContainer extends StatelessWidget {
   const CartContainer({
@@ -100,6 +96,7 @@ class CartContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  print('Rebuilding CartScreen with quantity: ${cartItem.quantity}');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -180,24 +177,6 @@ class CartContainer extends StatelessWidget {
                           })
                     ],
                   ),
-              //     Expanded(
-              // child: ElevatedButton(
-              //   onPressed: () {
-              //     // Initiate payment process
-              //     BlocProvider.of<PaymentBloc>(context).add(
-              //       CardPaymentEvent(
-              //         cartItem.price.toInt(),
-              //         UserModel().email ?? '',
-              //         context,
-              //       ),
-              //     );
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: kprimaryColor,
-              //   ),
-              //   child: Text('Checkout \$${cartItem.price * cartItem.quantity}'),
-              // ),
-              // )
                 ]),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 
 import '../constants.dart';
 
@@ -20,13 +21,14 @@ class ProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return GestureDetector(
       onTap: ontap,
       child: Container(
         height: 270,
         width: 150,
         decoration: BoxDecoration(
-            color: ktertiaryColor, borderRadius: BorderRadius.circular(15)),
+            color: themeData.primaryContainer, borderRadius: BorderRadius.circular(15)),
         child: Column(
           children: [
             SizedBox(
@@ -35,7 +37,7 @@ class ProductContainer extends StatelessWidget {
                 errorBuilder: (BuildContext context, Object exception,
                     StackTrace? stackTrace) {
                   // Handle the error here, for example, by showing a placeholder image
-                  return Column(
+                  return const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.error, color: Colors.red), // Error icon
@@ -50,7 +52,7 @@ class ProductContainer extends StatelessWidget {
               height: 110,
               width: 135,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                  color: themeData.onPrimaryContainer, borderRadius: BorderRadius.circular(10)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
@@ -91,9 +93,10 @@ class ProductContainer extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: ktertiaryColor,
                               borderRadius: BorderRadius.circular(5)),
-                          child: const Icon(
+                          child:  Icon(
                             Icons.arrow_forward_ios_outlined,
                             size: 15,
+                            color: themeData.primary,
                           ),
                         )
                       ],

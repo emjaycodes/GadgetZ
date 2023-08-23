@@ -80,19 +80,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           themeMode: state.themeMode,
           theme: appTheme,
-          // ThemeData(
-          //   primaryColor: kprimaryColor,
-          //   fontFamily: GoogleFonts.poppins().fontFamily,
-          //   //inputTextField Style
-          //   inputDecorationTheme: const InputDecorationTheme(
-          //     enabledBorder: OutlineInputBorder(
-          //         borderSide: BorderSide(width: 2, color: Color(0xFFDBDFE4))),
-          //     focusedBorder: OutlineInputBorder(
-          //       borderSide: BorderSide(color: kprimaryColor),
-          //     ),
-          //   ),
-          // ),
-          darkTheme: AppTheme.darkTheme,
+          darkTheme: appTheme,
           initialRoute: AuthenticationFlowScreen.id,
           routes: {
             IntroScreen.id: (context) => const IntroScreen(),
@@ -101,8 +89,7 @@ class MyApp extends StatelessWidget {
             NewPasswordScreen.id: (context) => const NewPasswordScreen(),
             HomeScreen.id: (context) => const HomeScreen(),
             ProductScreen.id: (context) => const ProductScreen(),
-            AuthenticationFlowScreen.id: (context) =>
-                const AuthenticationFlowScreen(),
+            AuthenticationFlowScreen.id: (context) => const AuthenticationFlowScreen(),
             LoginScreen.id: (context) => const LoginScreen(),
             SignupBody.id: (context) => const SignupBody(),
             FavouriteScreen.id: (context) => const FavouriteScreen(),
