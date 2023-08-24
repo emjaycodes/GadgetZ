@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/components/username_textfield.dart';
 import 'package:oga_bassey/components/textfield_names.dart';
 import 'package:oga_bassey/components/custom_button.dart';
 

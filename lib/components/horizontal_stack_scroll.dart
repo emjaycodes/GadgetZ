@@ -1,35 +1,39 @@
 import 'package:flutter/material.dart';
-
+import 'package:oga_bassey/theme/app_theme.dart';
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class HorizontalStackScroll extends StatelessWidget {
   final Text gadgetType;
   final Text productAmount;
   final String productImage;
-  final Function()? ontap;
-  final Color activeColor;
 
   HorizontalStackScroll({
     super.key,
     required this.gadgetType,
     required this.productAmount,
     required this.productImage,
-    this.ontap,
-    required this.activeColor,
+    
   });
 
   bool istapped = true;
 
+  void toggleColour() {
+    istapped = !istapped;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return Stack(children: [
       GestureDetector(
-        onTap: ontap,
+        onTap: toggleColour,
         child: Container(
           height: 60,
           width:  155,
           decoration: BoxDecoration(
-              color: activeColor, borderRadius: BorderRadius.circular(15)),
+              color:istapped ? themeData.primaryContainer : themeData.secondaryContainer, 
+              borderRadius: BorderRadius.circular(15)),
         ),
       ),
       Positioned(
