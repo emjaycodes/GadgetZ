@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/login_body.dart';
+import 'package:oga_bassey/screens/login_screen.dart';
 import 'components/forgot_password_body.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -21,9 +21,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                LoginScreen.id,
               );
             },
             icon: const Icon(
@@ -32,7 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               size: 40,
             )),
       ),
-      body: ForgotPasswordBody(),
+      body: const ForgotPasswordBody(),
     );
   }
 }

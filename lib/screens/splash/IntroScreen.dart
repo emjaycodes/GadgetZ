@@ -1,16 +1,18 @@
-import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:oga_bassey/constants.dart';
-import 'package:oga_bassey/screens/auth/main_page.dart';
-import 'package:oga_bassey/screens/login_body.dart';
 
-class SplashScreen extends StatefulWidget {
+import 'package:oga_bassey/screens/login_screen.dart';
+
+class IntroScreen extends StatefulWidget {
   static String id = 'splash_screen';
+
+  const IntroScreen({super.key});
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<IntroScreen> createState() => _IntroScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

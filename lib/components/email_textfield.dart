@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 class EmailTextfield extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final emailController;
+  final TextEditingController emailController;
   
 
   const EmailTextfield({
     Key? key,
-    this.emailController,
+    required this.emailController,
   }) : super(key: key);
 
   @override

@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 
 bool hidePassword = true;
 
-
-
 class PasswordTextfield extends StatefulWidget {
-final passwordController;
+  final TextEditingController passwordController;
 
   PasswordTextfield({
     Key? key,
-    this.passwordController,
+    required this.passwordController,
   }) : super(key: key);
 
   @override
@@ -29,25 +27,22 @@ class _PasswordTextfieldState extends State<PasswordTextfield> {
           controller: widget.passwordController,
           obscureText: hidePassword,
           decoration: InputDecoration(
-              suffixIcon: 
-                  GestureDetector(
-                  child: Icon(Icons.remove_red_eye_outlined),
-                  onTap: () {
+              suffixIcon: GestureDetector(
+                child: Icon(Icons.remove_red_eye_outlined),
+                onTap: () {
                   setState(() {
                     if (hidePassword = false) {
                       hidePassword = true;
                     }
                   });
                 },
-                  ),
-                
-              
+              ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10.0))
               // border: InputBorder.none
               ),
           validator: (value) {
-            if (value != null && value.length < 7) {
+            if (value != null && value.length < 6) {
               return 'Enter min. 6 Characters'; //
             } else {
               return null;

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:oga_bassey/theme/app_theme.dart';
 import '../constants.dart';
 
 class CustomStackWidget extends StatelessWidget {
@@ -11,6 +11,7 @@ class CustomStackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return Stack(
      fit: StackFit.loose,
      clipBehavior: Clip.none,
@@ -20,13 +21,13 @@ class CustomStackWidget extends StatelessWidget {
        height: 180,
        width: 300,
        decoration: BoxDecoration(
-        boxShadow: const [
+        boxShadow:  [
       BoxShadow(
-          color: kprimaryColor, //New
+          color: themeData.primary, 
           blurRadius: 5.0,
           offset: Offset(-1,3))
     ],
-         color: kprimaryColor,
+         color: themeData.primary,
          borderRadius: BorderRadius.circular(20)
        ),
      ),
@@ -35,7 +36,7 @@ class CustomStackWidget extends StatelessWidget {
        left: 20,
        child: Text('Zenbook Dou',
        style: TextStyle(
-         color: ktertiaryColor,
+         color: themeData.secondary,
        ),
        ),
      ),
@@ -44,7 +45,7 @@ class CustomStackWidget extends StatelessWidget {
        left: 20,
        child: Text('Unbelievable visual',
        style: TextStyle(
-         color: ktertiaryColor,
+         color: themeData.secondary,
        ),
        ),
      ),
@@ -53,7 +54,7 @@ class CustomStackWidget extends StatelessWidget {
        left: 20,
        child: Text('& perfomance',
        style: TextStyle(
-         color: ktertiaryColor,
+         color: themeData.secondary,
        ),
        ),
      ),

@@ -1,52 +1,27 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oga_bassey/blocs/auth_bloc/authentication_bloc.dart';
 import 'package:oga_bassey/constants.dart';
+import 'package:oga_bassey/theme/app_theme.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
     Key? key,
   }) : super(key: key);
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return Drawer(
-      backgroundColor: ktertiaryColor,
+      backgroundColor: themeData.background,
       child: ListView(
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-           DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: kprimaryColor,
             ),
-            child: Row(
-              children: const [
-                 Text('G',
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 50,
-              fontWeight: FontWeight.w700,
-            ),
-            ),
-             Text('ADGE',
-            style: TextStyle(
-              color: ktertiaryColor,
-              fontSize: 50,
-              fontWeight: FontWeight.w700,
-            ),
-            ),
-             Text('TZ',
-            style: TextStyle(
-              color: Colors.redAccent,
-              fontSize: 50,
-              fontWeight: FontWeight.w700,
-            ),
-            )
-              ],
-            ),
+            child: AppLogo(size: 50, fontWeight: FontWeight.w700,),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
@@ -75,15 +50,58 @@ class CustomDrawer extends StatelessWidget {
                 Center(
                   child: TextButton(
                       onPressed: () {
-                        signUserOut();
+                        //sign out
+                        context.read<AuthenticationBloc>().add(SignOutUser());
                       },
-                      child: const Text('SignOut',
-                      style: TextStyle(
-                        color: kprimaryColor,
-                        fontSize: 21),
+                      child:  Text(
+                        'SignOut',
+                        style: TextStyle(color: themeData.tertiary, fontSize: 21),
                       )),
                 )
               ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AppLogo extends StatelessWidget {
+  final double size;
+  final FontWeight? fontWeight;
+  const AppLogo({
+    super.key, required this.size, this.fontWeight,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 10,
+      child: Row(
+        children: [
+          Text(
+            'G',
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: size,
+              fontWeight: fontWeight,
+            ),
+          ),
+          Text(
+            'ADGE',
+            style: TextStyle(
+              color: ktertiaryColor,
+              fontSize: size,
+              fontWeight: fontWeight,
+            ),
+          ),
+          Text(
+            'TZ',
+            style: TextStyle(
+              color: Colors.redAccent,
+              fontSize: size,
+              fontWeight: fontWeight,
             ),
           )
         ],
@@ -102,12 +120,13 @@ class GadgetText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = AppTheme.getThemeData(context).colorScheme;
     return Text(
       gadgetName,
-      style: const TextStyle(
+      style:  TextStyle(
         fontSize: 17,
         fontWeight: FontWeight.w500,
-        color: kprimaryColor,
+        color: themeData.tertiary,
       ),
     );
   }

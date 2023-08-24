@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 
-
-
-class Utils {
-  static final messengerKey = GlobalKey<ScaffoldMessengerState>();
-  
-  static showSnackBar(String? text) {
-    if (text == null) return;
-
-    final snackBar = SnackBar(
-      content: Text(text),
-      backgroundColor: Colors.red,
+class UIUtils {
+  static void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
     );
-
-    messengerKey.currentState
-    ?..removeCurrentSnackBar()
-    .. showSnackBar(snackBar);
   }
+
 }
