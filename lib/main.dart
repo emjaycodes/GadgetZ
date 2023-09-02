@@ -27,22 +27,21 @@ import 'package:oga_bassey/theme/app_theme.dart';
 import 'blocs/product_bloc/product_bloc.dart';
 import 'firebase_options.dart';
 
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Handling a background message: $message");
-}
+// @pragma('vm:entry-point')
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
 
   
 
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   //Push notification
   await FirebasePushNotification().initNotifications();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  
 
   runApp(
     MultiBlocProvider(
@@ -63,7 +62,7 @@ void main() async {
           create: (context) => LocationBloc(),
         ),
         BlocProvider(
-          create: (context) => PaymentBloc(),
+          create: (context) => PaymentBloc(context),
         ),
         BlocProvider(
           create: (context) => ThemeCubit(),
@@ -79,7 +78,7 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext   context) {
     return BlocBuilder<ThemeCubit, ThemeModeState>(
       builder: (context, state) {
         final appTheme = state.themeMode == ThemeMode.light

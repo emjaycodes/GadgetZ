@@ -41,110 +41,116 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     final themeData = AppTheme.getThemeData(context).colorScheme;
     SizeConfig().init(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ksmallSizedbox,
-        Center(
-          child: CustomStackWidget(),
-        ),
-        kbigSizedbox,
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            height: 70,
-            child: HorizontalListItem(),
-          ),
-        ),
-        kbigSizedbox,
-        Row(
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ksmallSizedbox,
+            Center(
+              child: CustomStackWidget(),
+            ),
+            kbigSizedbox,
             Padding(
-              padding: const EdgeInsets.only(left: 22.0),
-              child: Text(
-                'Popular Product',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: themeData.tertiary,
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 70,
+                child: HorizontalListItem(),
               ),
             ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 22.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ProductBody.id);
-                  },
+            kbigSizedbox,
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 22.0),
                   child: Text(
-                    'See all',
-                    style: TextStyle(),
-                  )),
+                    'Popular Product',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: themeData.tertiary,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 22.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, ProductBody.id);
+                      },
+                      child: Text(
+                        'See all',
+                        style: TextStyle(),
+                      )),
+                ),
+              ],
+            ),
+            kbigSizedbox,
+            Expanded(
+              child: BlocBuilder<ProductBloc, ProductState>(
+                bloc: _productBloc,
+                builder: (context, state) {
+                  if (state is ProductsUpdatedState) {
+                    final List<Product> products = state.products;
+          
+                    return GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: products.length,
+                      padding: EdgeInsets.all(12),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 1 / 1.7,
+                      ),
+                      itemBuilder: (context, index) {
+                        final Product product = products[index];
+                        return ProductContainer(
+                          productName: product.name,
+                          //you changed to int for experiment
+                          productPrice: product.price,
+                          productbrand: product.brand,
+                          productImage: product.image,
+                          ontap: () {
+                            BlocProvider.of<ProductBloc>(context)
+                                .add(NavigateToProductDetailsEvent(product));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsScreen(product: product)));
+                          },
+                        );
+                      },
+                    );
+                  } else if (state is ProductErrorState) {
+                    print(state.errorMessage.toString());
+                     Text('Error: ${state.errorMessage.toString()}');
+                     return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Error: Unable to fetch products',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            _productBloc.add(FetchProductsEvent());
+                          },
+                          child: Text('Retry'),
+                        ),
+                      ],    
+                    ),
+                     );
+          
+                  } else {
+                    return Center(child: ShimmerList());
+                  }
+                },
+              ),
             ),
           ],
         ),
-        kbigSizedbox,
-        Expanded(
-          child: BlocBuilder<ProductBloc, ProductState>(
-            bloc: _productBloc,
-            builder: (context, state) {
-              if (state is ProductsUpdatedState) {
-                final List<Product> products = state.products;
-
-                return GridView.builder(
-                  itemCount: products.length,
-                  padding: EdgeInsets.all(12),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 1 / 1.7,
-                  ),
-                  itemBuilder: (context, index) {
-                    final Product product = products[index];
-                    return ProductContainer(
-                      productName: product.name,
-                      //you changed to int for experiment
-                      productPrice: product.price,
-                      productbrand: product.brand,
-                      productImage: product.image,
-                      ontap: () {
-                        BlocProvider.of<ProductBloc>(context)
-                            .add(NavigateToProductDetailsEvent(product));
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsScreen(product: product)));
-                      },
-                    );
-                  },
-                );
-              } else if (state is ProductErrorState) {
-                print(state.errorMessage.toString());
-                 Text('Error: ${state.errorMessage.toString()}');
-                 return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Error: Unable to fetch products',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _productBloc.add(FetchProductsEvent());
-                      },
-                      child: Text('Retry'),
-                    ),
-                  ],    
-                ),
-                 );
-
-              } else {
-                return Center(child: ShimmerList());
-              }
-            },
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

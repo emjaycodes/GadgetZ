@@ -22,3 +22,4 @@ class OrderInRouteEvent extends PaymentEvent {
   const OrderInRouteEvent(this.orderId, this.location);
 }
 
+class PaymentDoneEvent extends PaymentEvent {}
