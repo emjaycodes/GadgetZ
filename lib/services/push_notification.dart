@@ -1,37 +1,39 @@
-// // push notification
-// import 'package:firebase_messaging/firebase_messaging.dart';
+// push notification
+// ignore_for_file: non_constant_identifier_names, avoid_print
 
-// Future<void> handleBackgroundMessage(RemoteMessage message)async{
-//   print('Title: ${message.notification?.title}');
-//   print('Body: ${message.notification?.body}');
-//   print('Paload: ${message.data}');
-// }
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-// class FirebasePushNotification {
-//   final _firebaseMessaging = FirebaseMessaging.instance;
+Future<void> handleBackgroundMessage(RemoteMessage message)async{
+  print('Title: ${message.notification?.title}');
+  print('Body: ${message.notification?.body}');
+  print('Paload: ${message.data}');
+}
 
-//   Future<void> initNotifications()async{
-//     await _firebaseMessaging.requestPermission();
-//     final FCMTtoken = await _firebaseMessaging.getToken();
-//     print(FCMTtoken);
-//     print('object');
-//     // FirebaseMessaging.onBackgroundMessage((message) => handleBackgroundMessage(message));
-// }
-//   Future<void> sendOrderInRouteNotification(String userEmail, String location) async {
-//     // Construct the notification message
-//     final message = RemoteMessage(
-//       data: {
-//         'title': 'Order in Route',
-//         'body': 'Your order is on its way to $location.',
-//       },
-//       notification: RemoteNotification(
-//         title: 'Order in Route',
-//         body: 'Your order is on its way to $location.',
-//       ),
-//     );
+class FirebasePushNotification { 
+  final _firebaseMessaging = FirebaseMessaging.instance;  
 
-//     // Send the message
-//     await _firebaseMessaging.sendMessage();
-//   }
+  Future<void>  initNotifications()async{
+    await _firebaseMessaging.requestPermission();
+    final FCMTtoken = await _firebaseMessaging.getToken();
+    print('token: $FCMTtoken');
+  
+    // FirebaseMessaging.onBackgroundMessage((message) => handleBackgroundMessage(message));
+}
+  // Future<void> sendOrderInRouteNotification(String userEmail, String location) async {
+  //   // Construct the notification message
+  //   final message = RemoteMessage(
+  //     data: {
+  //       'title': 'Order in Route',
+  //       'body': 'Your order is on its way to $location.',
+  //     },
+  //     notification: RemoteNotification(
+  //       title: 'Order in Route',
+  //       body: 'Your order is on its way to $location.',
+  //     ),
+  //   );
 
-//   }
+  //   // Send the message
+  //   await _firebaseMessaging.sendMessage();
+  // }
+
+  }
