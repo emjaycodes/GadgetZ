@@ -21,7 +21,7 @@ class AuthService {
     String email,
     String password,
   ) async {
-    //signin the user
+    /// signin the user
     try {
       final fb_auth.UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
@@ -102,21 +102,3 @@ class AuthService {
     return await fb_auth.FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
-
-
-// Navigator.pop(context);
-
-      // //wrong email
-      // if (e.code == 'user-not-found') {
-      //   DialogHelper.showWrongEmailDialog(context);
-      //   print('no user found for that email');
-      // } else if (e.code == 'wrong-password') {
-      //   DialogHelper.showWrongPasswordDialog(context);
-      //   print('wrong password buddy');
-      // }
-
-      // const message =
-      //     'An error occurred. Please try again.'; // Error message to display in the SnackBar
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(content: Text(message)),
-      // );

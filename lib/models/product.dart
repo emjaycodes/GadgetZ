@@ -1,15 +1,15 @@
 class Product {
-   int id;
+  int id;
   final String name;
   final double price;
   final String brand;
   final String image;
   final String description;
   int quantity;
-  bool liked = false; 
+  bool liked = false;
 
-  Product(this.id, this.name, this.price, this.brand, this.description, this.image,
-      this.quantity, this.liked);
+  Product(this.id, this.name, this.price, this.brand, this.description,
+      this.image, this.quantity, this.liked);
 
   // Map<String, dynamic> toMap() {
   //   return {
@@ -22,8 +22,8 @@ class Product {
   // }
 
   factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(map['id'], map['name'], map['price'], map['brand'], map['description'],
-        map['image'], map['quantity'], map['liked']);
+    return Product(map['id'], map['name'], map['price'], map['brand'],
+        map['description'], map['image'], map['quantity'], map['liked']);
   }
 
   @override
