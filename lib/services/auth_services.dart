@@ -17,11 +17,12 @@ class AuthService {
     return null;
   }
 
+ /// sign in the user
   Future<UserModel?> signInUser(
     String email,
     String password,
   ) async {
-    /// signin the user
+   
     try {
       final fb_auth.UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
